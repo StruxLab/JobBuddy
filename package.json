@@ -1,0 +1,29 @@
+{
+  "name": "jobbuddy",
+  "version": "1.0.0",
+  "description": "JobBuddy is a cross-platform application that assists jobseekers in tracking job postings that individuals are interested in and/or have applied to.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WuksGG/JobBuddy.git"
+  },
+  "author": "Michael Chan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WuksGG/JobBuddy/issues"
+  },
+  "homepage": "https://github.com/WuksGG/JobBuddy#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.24.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0"
+  }
+}
