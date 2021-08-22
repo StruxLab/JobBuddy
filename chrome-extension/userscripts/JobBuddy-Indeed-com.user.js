@@ -15,11 +15,26 @@
     'use strict';
     let reactDom;
 
+    const createButton = (title, handler) => {
+        const button = document.createElement('button');
+        button.append(document.createTextNode(title));
+        button.addEventListener('click', handler);
+        return button;
+    };
+    const someHandler = (event) => {
+        console.log(event);
+    };
+
     const createControlPanel = (node) => {
         console.log(node.getAttribute('data-jk'));
         const controls = document.createElement('div');
         controls.className = 'jb-controls';
-        controls.append(document.createTextNode('[JB]'));
+        controls.append(document.createTextNode('[JobBuddy]'));
+        controls.addEventListener('click', (event) => {
+            event.stopPropagation();
+            event.preventDefault();
+        });
+        controls.append(createButton('test', someHandler));
         node.prepend(controls);
     };
 
@@ -43,6 +58,9 @@
                     !reactDom.getElementsByClassName('jb-controls').length)
                 {
                     attachToTiles();
+                    const style = document.createElement('style');
+                    style.appendChild(document.createTextNode('.jb-controls {background-color: orange; border-radius: 3px; padding: 10px; font-weight: bold;}'));
+                    document.body.appendChild(style);
                 }
             });
         };
@@ -61,8 +79,4 @@
             createMutationObserver(jobCardContainer);
         }
     });
-
-    const style = document.createElement('style');
-    style.appendChild(document.createTextNode('.result {background-color: #000!important}'));
-    // document.body.appendChild(style);
 })(window);
