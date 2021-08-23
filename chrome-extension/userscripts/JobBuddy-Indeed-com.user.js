@@ -11,6 +11,8 @@
 
 // ==/UserScript==
 
+// https://www.indeed.com/viewjob?jk={{jobkey}}
+
 (function(global) {
     'use strict';
     let reactDom;
@@ -133,8 +135,9 @@
             location: node.getElementsByClassName('companyLocation')[0].textContent,
             id: node.getAttribute('data-jk'),
             salary: node.getElementsByClassName('salary-snippet')[0]?.ariaLabel,
+            provider: 0, // Indeed
         };
-        console.log(postingMeta);
+        console.table(postingMeta);
     };
 
     const attachToTiles = () => {
