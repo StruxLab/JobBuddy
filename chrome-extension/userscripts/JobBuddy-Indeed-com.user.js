@@ -19,20 +19,57 @@
     const defineStyles = () => {
         styles = document.createElement('style');
         document.body.appendChild(styles);
-        styles.innerText += '.jb-logo {background-color: #244a83; padding: 5px 9px; color: #fff; border-radius: 5px; margin-right:10px;}';
-        styles.innerText += '.jb-controls {background-color: #d0f2ff; border-radius: 3px; padding: 10px; font-weight: bold; cursor: default;}';
-        styles.innerText += '.jb-status-0 {background-color: #b4b4b4!important;}';
-        styles.innerText += '.jb-status-0 .jb-controls {background-color: #565656;}';
-        styles.innerText += '.jb-status-1 {background-color: #def0ff!important;}';
-        styles.innerText += '.jb-status-1 .jb-controls {background-color: #5fb5ff;}';
-        styles.innerText += '.jb-status-2 {background-color: #f0ffea!important;}';
-        styles.innerText += '.jb-status-2 .jb-controls {background-color: #89df74;}';
-        styles.innerText += '.jb-status-3 {background-color: #fff9db!important;}';
-        styles.innerText += '.jb-status-3 .jb-controls {background-color: #ffd60f;}';
-        styles.innerText += '.jb-status-4 {background-color: #e1ffce!important;}';
-        styles.innerText += '.jb-status-4 .jb-controls {background-color: #4bb000;}';
-        styles.innerText += '.jb-status-5 {background-color: #ffc8c8!important;}';
-        styles.innerText += '.jb-status-5 .jb-controls {background-color: #ff8787;}';
+        styles.innerText = `
+        .jb-logo {
+        background-color: #244a83;
+        padding: 5px 9px;
+        color: #fff;
+        border-radius: 5px;
+        margin-right:10px;
+        }
+        .jb-controls {
+        background-color: #d0f2ff;
+        border-radius: 3px;
+        padding: 10px;
+        font-weight: bold;
+        cursor: default;
+        }
+        .jb-status-0 {
+        background-color: #b4b4b4!important;
+        }
+        .jb-status-0 .jb-controls {
+        background-color: #565656;
+        }
+        .jb-status-1 {
+        background-color: #def0ff!important;
+        }
+        .jb-status-1 .jb-controls {
+        background-color: #5fb5ff;
+        }
+        .jb-status-2 {
+        background-color: #f0ffea!important;
+        }
+        .jb-status-2 .jb-controls {
+        background-color: #89df74;
+        }
+        .jb-status-3 {
+        background-color: #fff9db!important;
+        }
+        .jb-status-3 .jb-controls {
+        background-color: #ffd60f;
+        }
+        .jb-status-4 {
+        background-color: #e1ffce!important;
+        }
+        .jb-status-4 .jb-controls {
+        background-color: #4bb000;
+        }
+        .jb-status-5 {
+        background-color: #ffc8c8!important;
+        }
+        .jb-status-5 .jb-controls {
+        background-color: #ff8787;
+        }`;
     };
 
     const createStatusDropDown = () => {
