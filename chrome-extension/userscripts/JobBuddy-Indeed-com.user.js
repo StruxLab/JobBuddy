@@ -14,27 +14,75 @@
 (function(global) {
     'use strict';
     let reactDom;
+    let styles;
 
-    const createButton = (title, handler) => {
-        const button = document.createElement('button');
-        button.append(document.createTextNode(title));
-        button.addEventListener('click', handler);
-        return button;
+    const defineStyles = () => {
+        styles = document.createElement('style');
+        document.body.appendChild(styles);
+        styles.innerText += '.jb-logo {background-color: #244a83; padding: 5px 9px; color: #fff; border-radius: 5px; margin-right:10px;}';
+        styles.innerText += '.jb-controls {background-color: #d0f2ff; border-radius: 3px; padding: 10px; font-weight: bold; cursor: default;}';
+        styles.innerText += '.jb-status-0 {background-color: #b4b4b4!important;}';
+        styles.innerText += '.jb-status-0 .jb-controls {background-color: #565656;}';
+        styles.innerText += '.jb-status-1 {background-color: #def0ff!important;}';
+        styles.innerText += '.jb-status-1 .jb-controls {background-color: #5fb5ff;}';
+        styles.innerText += '.jb-status-2 {background-color: #f0ffea!important;}';
+        styles.innerText += '.jb-status-2 .jb-controls {background-color: #89df74;}';
+        styles.innerText += '.jb-status-3 {background-color: #fff9db!important;}';
+        styles.innerText += '.jb-status-3 .jb-controls {background-color: #ffd60f;}';
+        styles.innerText += '.jb-status-4 {background-color: #e1ffce!important;}';
+        styles.innerText += '.jb-status-4 .jb-controls {background-color: #4bb000;}';
+        styles.innerText += '.jb-status-5 {background-color: #ffc8c8!important;}';
+        styles.innerText += '.jb-status-5 .jb-controls {background-color: #ff8787;}';
     };
-    const someHandler = (event) => {
-        console.log(event);
+
+    const createStatusDropDown = () => {
+        const createOption = (optionText, value) => {
+            const option = document.createElement('option');
+            option.textContent = optionText;
+            option.value = value;
+            return option;
+        };
+        const dropDown = document.createElement('select');
+        dropDown.className = 'jb-status-select';
+        dropDown.append(createOption('Select a status...', ''));
+        dropDown.append(createOption('Interested', 1));
+        dropDown.append(createOption('Not Interested', 0));
+        dropDown.append(createOption('Applied', 2));
+        dropDown.append(createOption('Interviewing', 3));
+        dropDown.append(createOption('Offered', 4));
+        dropDown.append(createOption('No Longer Pursuing', 5));
+        // dropDown.innertext2.selected = true;
+        dropDown.addEventListener('change', handleDropDownChange);
+
+        return dropDown;
+    };
+
+    const handleDropDownChange = ({ target }) => {
+        const classTypes = ['jb-status-0',
+                            'jb-status-1',
+                            'jb-status-2',
+                            'jb-status-3',
+                            'jb-status-4',
+                            'jb-status-5'];
+        event.target.parentElement.parentElement.classList.remove(...classTypes);
+        if (target.value) {
+            event.target.parentElement.parentElement.classList.add('jb-status-' + target.value);
+        }
     };
 
     const createControlPanel = (node) => {
         console.log(node.getAttribute('data-jk'));
         const controls = document.createElement('div');
         controls.className = 'jb-controls';
-        controls.append(document.createTextNode('[JobBuddy]'));
+        const span = document.createElement('span');
+        span.className = 'jb-logo';
+        span.innerText = 'JobBuddy';
+        controls.append(span);
         controls.addEventListener('click', (event) => {
             event.stopPropagation();
             event.preventDefault();
         });
-        controls.append(createButton('test', someHandler));
+        controls.append(createStatusDropDown());
         node.prepend(controls);
     };
 
@@ -57,10 +105,8 @@
                     mutation.target.id === 'mosaic-provider-jobcards' &&
                     !reactDom.getElementsByClassName('jb-controls').length)
                 {
+                    defineStyles();
                     attachToTiles();
-                    const style = document.createElement('style');
-                    style.appendChild(document.createTextNode('.jb-controls {background-color: orange; border-radius: 3px; padding: 10px; font-weight: bold;}'));
-                    document.body.appendChild(style);
                 }
             });
         };
