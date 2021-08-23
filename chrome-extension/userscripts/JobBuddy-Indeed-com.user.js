@@ -30,11 +30,23 @@
         margin-right:10px;
         }
         .jb-controls {
+        display: flex;
         background-color: #d0f2ff;
         border-radius: 3px;
         padding: 10px;
         font-weight: bold;
         cursor: default;
+        align-items: center;
+        }
+        .jb-status-select {
+        margin-right: 8px;
+        }
+        .jb-sync-button {
+        background-image: url('https://jobbuddy.mchan.me/assets/images/sync.png');
+        height: 23px;
+        width: 23px;
+        cursor: pointer;
+        background-size: contain;
         }
         .jb-status-0 {
         background-color: #b4b4b4!important;
@@ -96,21 +108,24 @@
             dropDown.append(createOption(statusText, id));
         });
         // dropDown.innertext2.selected = true;
-        dropDown.addEventListener('change', handleDropDownChange);
+        // dropDown.addEventListener('change', handleDropDownChange);
 
         return dropDown;
     };
 
-    const handleDropDownChange = ({ target }) => {
+    const handleSyncClick = ({ target }, dropDown) => {
+        console.log(target.parentElement.parentElement);
         const classTypes = ['jb-status-0',
                             'jb-status-1',
                             'jb-status-2',
                             'jb-status-3',
                             'jb-status-4',
                             'jb-status-5'];
-        event.target.parentElement.parentElement.classList.remove(...classTypes);
-        if (target.value) {
-            event.target.parentElement.parentElement.classList.add('jb-status-' + target.value);
+        target.parentElement.parentElement.classList.remove(...classTypes);
+        if (dropDown.value) {
+            target.parentElement.parentElement.classList.add('jb-status-' + dropDown.value);
+        } else {
+            confirm('Are you sure you want to remove this listing from your tracker?');
         }
     };
 
@@ -126,7 +141,14 @@
             event.stopPropagation();
             event.preventDefault();
         });
-        controls.append(createStatusDropDown());
+        // Create Dropdown
+        const dropDown = createStatusDropDown();
+        controls.append(dropDown);
+        // Create Sync Button
+        const syncButton = document.createElement('div');
+        syncButton.className = 'jb-sync-button';
+        syncButton.addEventListener('click', (event) => handleSyncClick(event, dropDown));
+        controls.append(syncButton);
         node.prepend(controls);
         // console.log(node);
         const postingMeta = {
