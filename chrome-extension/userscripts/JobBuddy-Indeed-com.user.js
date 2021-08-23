@@ -80,14 +80,19 @@
             return option;
         };
         const dropDown = document.createElement('select');
+        const jbPostingStatuses = [
+            [1, 'Interested'],
+            [0, 'Not Interested'],
+            [2, 'Applied'],
+            [3, 'Interviewing'],
+            [4, 'Offered'],
+            [5, 'No Longer Pursuing'],
+        ];
         dropDown.className = 'jb-status-select';
         dropDown.append(createOption('Select a status...', ''));
-        dropDown.append(createOption('Interested', 1));
-        dropDown.append(createOption('Not Interested', 0));
-        dropDown.append(createOption('Applied', 2));
-        dropDown.append(createOption('Interviewing', 3));
-        dropDown.append(createOption('Offered', 4));
-        dropDown.append(createOption('No Longer Pursuing', 5));
+        jbPostingStatuses.forEach(([id, statusText]) => {
+            dropDown.append(createOption(statusText, id));
+        });
         // dropDown.innertext2.selected = true;
         dropDown.addEventListener('change', handleDropDownChange);
 
