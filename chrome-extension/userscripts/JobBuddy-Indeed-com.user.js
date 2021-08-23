@@ -85,7 +85,7 @@
             [0, 'Not Interested'],
             [2, 'Applied'],
             [3, 'Interviewing'],
-            [4, 'Offered'],
+            [4, 'Offer Received'],
             [5, 'No Longer Pursuing'],
         ];
         dropDown.className = 'jb-status-select';
@@ -113,7 +113,7 @@
     };
 
     const createControlPanel = (node) => {
-        console.log(node.getAttribute('data-jk'));
+        // console.log(node.getAttribute('data-jk'));
         const controls = document.createElement('div');
         controls.className = 'jb-controls';
         const span = document.createElement('span');
@@ -126,6 +126,15 @@
         });
         controls.append(createStatusDropDown());
         node.prepend(controls);
+        // console.log(node);
+        const postingMeta = {
+            jobRole: node.getElementsByClassName('jobTitle')[0].lastChild.textContent,
+            employer: node.getElementsByClassName('companyName')[0].textContent,
+            location: node.getElementsByClassName('companyLocation')[0].textContent,
+            id: node.getAttribute('data-jk'),
+            salary: node.getElementsByClassName('salary-snippet')[0]?.ariaLabel,
+        };
+        console.log(postingMeta);
     };
 
     const attachToTiles = () => {
