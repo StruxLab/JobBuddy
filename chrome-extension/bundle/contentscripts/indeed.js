@@ -5,6 +5,32 @@
   jbNotifications.id = 'jb-notifications';
   document.getElementsByTagName('html')[0].append(jbNotifications);
 
+  const pushNotification = (title, message, style = 'default') => {
+    const notificationOuter = document.createElement('div');
+    const notificationTitle = document.createElement('div');
+    const notificationMessage = document.createElement('div');
+    notificationOuter.append(notificationTitle);
+    notificationOuter.append(notificationMessage);
+    notificationOuter.className = 'jb-notif-outer jb-opaque jb-notif-style-' + style;
+    notificationTitle.className = 'jb-notif-title';
+    notificationMessage.className = 'jb-notif-message';
+    notificationTitle.innerText = title;
+    notificationMessage.innerText = message;
+    jbNotifications.append(notificationOuter);
+    setTimeout(() => {
+      notificationOuter.classList.remove('jb-opaque');
+    }, 0);
+    setTimeout(() => {
+      notificationOuter.className += ' jb-opaque';
+    }, 4000);
+    setTimeout(() => {
+      notificationOuter.remove();
+    }, 9000);
+  };
+
+  pushNotification('Success!', 'Job saved to list!', 'green');
+  pushNotification('Success!', 'Job saved to list!', 'green');
+
   const createStatusDropDown = () => {
     const createOption = (optionText, value) => {
       const option = document.createElement('option');
@@ -53,8 +79,11 @@
     postingNode.setAttribute('data-jb-status', dropDown.value);
     // If previousStatus === null, then send entire payload
     console.log('here', previousStatus);
-    if (previousStatus === '') {
+    if (previousStatus === null) {
+      pushNotification('Success!', 'Job saved to list!', 'green');
       console.log('nothing before');
+    } else {
+      pushNotification('Success!', 'Tracking status updated', 'green');
     }
     // otherwise if nextstate is null, use delete
     // otherwise just send the status update
