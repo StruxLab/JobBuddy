@@ -1,5 +1,9 @@
 (function() {
   'use strict';
+  const jobCardContainer = document.getElementById('mosaic-provider-jobcards');
+  const jbNotifications = document.createElement('div');
+  jbNotifications.id = 'jb-notifications';
+  document.getElementsByTagName('html')[0].append(jbNotifications);
 
   const createStatusDropDown = () => {
     const createOption = (optionText, value) => {
@@ -117,6 +121,5 @@
   };
 
   // Initialize
-  const jobCardContainer = document.getElementById('mosaic-provider-jobcards');
   createMutationObserver(jobCardContainer);
 })();
