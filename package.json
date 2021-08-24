@@ -1,6 +1,6 @@
 {
   "name": "jobbuddy",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "JobBuddy is a cross-platform application that assists jobseekers in tracking job postings that individuals are interested in and/or have applied to.",
   "main": "index.js",
   "scripts": {

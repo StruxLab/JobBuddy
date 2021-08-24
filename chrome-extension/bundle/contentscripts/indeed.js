@@ -29,33 +29,39 @@
   };
 
   const handleSyncClick = ({ target }, dropDown) => {
-    const postingNode = target.parentElement.parentElement;
+    const postingNode = target.parentElement.parentElement.parentElement;
+    console.log(postingNode);
     const previousStatus = postingNode.getAttribute('data-jb-status');
-    if (previousStatus === dropDown.value) {
-      return;
-    }
-    postingNode.classList.remove(`jb-status-${previousStatus}`);
-    postingNode.setAttribute('data-jb-status', dropDown.value);
+    const postingMeta = {
+      id: postingNode.getAttribute('data-jk'),
+      provider: 0, // Indeed
+      status: dropDown.value,
+      jobRole: postingNode.getElementsByClassName('jobTitle')[0].lastChild.textContent,
+      employer: postingNode.getElementsByClassName('companyName')[0].textContent,
+      location: postingNode.getElementsByClassName('companyLocation')[0].textContent,
+      salary: postingNode.getElementsByClassName('salary-snippet')[0]?.ariaLabel,
+    };
     const responseHandler = ({ status, statusText }) => {
       console.log('responsed');
         console.log(status, statusText);
     };
-    const postingMeta = {
-      jobRole: postingNode.getElementsByClassName('jobTitle')[0].lastChild.textContent,
-      employer: postingNode.getElementsByClassName('companyName')[0].textContent,
-      location: postingNode.getElementsByClassName('companyLocation')[0].textContent,
-      id: postingNode.getAttribute('data-jk'),
-      salary: postingNode.getElementsByClassName('salary-snippet')[0]?.ariaLabel,
-      provider: 0, // Indeed
-      status: dropDown.value,
-    };
+    if (previousStatus === dropDown.value) return;
+    postingNode.classList.remove(`jb-status-${previousStatus}`);
+    postingNode.setAttribute('data-jb-status', dropDown.value);
+    // If previousStatus === null, then send entire payload
+    console.log('here', previousStatus);
+    if (previousStatus === '') {
+      console.log('nothing before');
+    }
+    // otherwise if nextstate is null, use delete
+    // otherwise just send the status update
     if (dropDown.value) {
       fetch('https://jobbuddy.mchan.me/api/hello', {
         method: 'POST',
         body: JSON.stringify(postingMeta),
         mode: 'cors',
-        onload: responseHandler,
-      });
+      })
+        .then(responseHandler);
       postingNode.classList.add(`jb-status-${dropDown.value}`);
     } else {
       confirm('Are you sure you want to remove this listing from your tracker?');
@@ -80,7 +86,7 @@
     syncButton.style.backgroundImage = `url(${chrome.runtime.getURL("images/sync.png")})`;
     syncButton.addEventListener('click', (event) => handleSyncClick(event, dropDown));
     controls.append(syncButton);
-    node.prepend(controls);
+    node.firstChild.prepend(controls);
   };
 
   const attachToTiles = () => {
@@ -94,12 +100,13 @@
   const createMutationObserver = (node) => {
     const callback = (mutationsList, observer) => {
       mutationsList.forEach(mutation => {
-        console.log(mutation);
-          if (mutation.attributeName === 'class' &&
-            mutation.target.id === 'mosaic-provider-jobcards' &&
+        // console.log(mutation);
+        // console.log(mutation.attributeName);
+          if (((mutation.attributeName === 'class' && ['uip-micro-content-provider', 'mosaic-provider-jobcards'].includes(mutation.target.id)) ||
+            (mutation.attributeName === 'style' && mutation.target.id === 'vjs-container')) &&
             !reactDom.getElementsByClassName('jb-controls').length)
           {
-            console.log('here');
+            // console.log('here');
             attachToTiles();
             observer.disconnect();
           }
@@ -112,11 +119,11 @@
       subtree: true,
     });
   };
-
+  // console.log('scriptstarted');
   if (global.document.body.getAttribute('data-tn-application') === 'jasx') {
     reactDom = global.document;
     const jobCardContainer = reactDom.getElementById('mosaic-provider-jobcards');
-    console.log(jobCardContainer);
     createMutationObserver(jobCardContainer);
   }
+
 })(window);
