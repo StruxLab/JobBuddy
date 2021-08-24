@@ -47,6 +47,7 @@
       id: postingNode.getAttribute('data-jk'),
       salary: postingNode.getElementsByClassName('salary-snippet')[0]?.ariaLabel,
       provider: 0, // Indeed
+      status: dropDown.value,
     };
     if (dropDown.value) {
       fetch('https://jobbuddy.mchan.me/api/hello', {
@@ -74,7 +75,6 @@
       event.stopPropagation();
       event.preventDefault();
     });
-    // console.table(postingMeta);
     controls.append(dropDown);
     syncButton.className = 'jb-sync-button';
     syncButton.style.backgroundImage = `url(${chrome.runtime.getURL("images/sync.png")})`;
