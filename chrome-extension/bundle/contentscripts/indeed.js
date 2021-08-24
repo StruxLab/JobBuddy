@@ -1,6 +1,5 @@
-(function(global) {
+(function() {
   'use strict';
-  let reactDom;
 
   const createStatusDropDown = () => {
     const createOption = (optionText, value) => {
@@ -90,7 +89,7 @@
   };
 
   const attachToTiles = () => {
-    const jobPostingTiles = reactDom.getElementsByClassName('result');
+    const jobPostingTiles = document.getElementsByClassName('result');
     for (let i = 0; i < jobPostingTiles.length; i++) {
       const tile = jobPostingTiles[i];
       createControlPanel(tile);
@@ -100,13 +99,10 @@
   const createMutationObserver = (node) => {
     const callback = (mutationsList, observer) => {
       mutationsList.forEach(mutation => {
-        // console.log(mutation);
-        // console.log(mutation.attributeName);
           if (((mutation.attributeName === 'class' && ['uip-micro-content-provider', 'mosaic-provider-jobcards'].includes(mutation.target.id)) ||
             (mutation.attributeName === 'style' && mutation.target.id === 'vjs-container')) &&
-            !reactDom.getElementsByClassName('jb-controls').length)
+            !document.getElementsByClassName('jb-controls').length)
           {
-            // console.log('here');
             attachToTiles();
             observer.disconnect();
           }
@@ -119,11 +115,8 @@
       subtree: true,
     });
   };
-  // console.log('scriptstarted');
-  if (global.document.body.getAttribute('data-tn-application') === 'jasx') {
-    reactDom = global.document;
-    const jobCardContainer = reactDom.getElementById('mosaic-provider-jobcards');
-    createMutationObserver(jobCardContainer);
-  }
 
-})(window);
+  // Initialize
+  const jobCardContainer = document.getElementById('mosaic-provider-jobcards');
+  createMutationObserver(jobCardContainer);
+})();
