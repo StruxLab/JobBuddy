@@ -19,6 +19,7 @@
 }
 .jb-sync-button {
   /* background-image: url("chrome-extension://lfcfdmhedlnngniaahbdimbdefeccjca/images/sync.png"); */
+  background-color: #ffffffa8;
   height: 23px;
   width: 23px;
   cursor: pointer;
