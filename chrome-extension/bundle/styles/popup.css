@@ -1,0 +1,9 @@
+html {
+  background-color: rgb(0, 100, 107);
+  color: #fff;
+  height: 250px;
+  width: 250px;
+}
+#fakebutton {
+  user-select: none;
+}
