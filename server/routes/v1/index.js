@@ -5,7 +5,7 @@ const router = require('express').Router();
 
   jobbuddy.mchan.me/api/v1/
 */
-
+router.use('/oauth', require('./oauth'));
 router.use('/tracker', require('./tracker'));
 
 module.exports = router;
