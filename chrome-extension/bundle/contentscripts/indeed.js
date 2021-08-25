@@ -28,9 +28,6 @@
     }, 9000);
   };
 
-  pushNotification('Success!', 'Job saved to list!', 'green');
-  pushNotification('Success!', 'Job saved to list!', 'green');
-
   const createStatusDropDown = () => {
     const createOption = (optionText, value) => {
       const option = document.createElement('option');
@@ -132,8 +129,10 @@
   const createMutationObserver = (node) => {
     const callback = (mutationsList, observer) => {
       mutationsList.forEach(mutation => {
-          if (((mutation.attributeName === 'class' && ['uip-micro-content-provider', 'mosaic-provider-jobcards'].includes(mutation.target.id)) ||
-            (mutation.attributeName === 'style' && mutation.target.id === 'vjs-container')) &&
+          if (((mutation.attributeName === 'class' &&
+          ['uip-micro-content-provider', 'mosaic-provider-jobcards'].includes(mutation.target.id)) ||
+            (mutation.attributeName === 'style' &&
+            mutation.target.id === 'vjs-container')) &&
             !document.getElementsByClassName('jb-controls').length)
           {
             attachToTiles();

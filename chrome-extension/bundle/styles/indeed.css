@@ -5,6 +5,9 @@
   border-radius: 5px;
   margin-right: 10px;
 }
+.desktop.result {
+  border-radius: 8px;
+}
 
 /* Notifications */
 #jb-notifications {
@@ -57,7 +60,6 @@
   font-weight: bold;
 }
 .jb-sync-button {
-  /* background-image: url("chrome-extension://lfcfdmhedlnngniaahbdimbdefeccjca/images/sync.png"); */
   background-color: #ffffffa8;
   height: 23px;
   width: 23px;
