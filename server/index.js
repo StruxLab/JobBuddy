@@ -1,11 +1,25 @@
 const express = require('express');
 require('dotenv').config({ path: '.env' });
+const responseHandler = require('./routes/responseHandler');
 
 const PORT = process.env.SERVER_PORT || 3000;
 const app = express();
 
-app.use
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use('/', require('./routes'));
+
+app.use((req, res) => {
+  res.status(404).json({
+    message: 'Not Found',
+    method: req.method,
+    path: req.url,
+  });
+});
+
+app.use(responseHandler);
 
 app.listen(PORT, () => {
-  console.log(`Server started on port ${PORT}.`);
+  process.stdout.write(`JobBuddy API Server started on port ${PORT}.\n`);
 });
