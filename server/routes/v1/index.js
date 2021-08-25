@@ -6,6 +6,6 @@ const router = require('express').Router();
   jobbuddy.mchan.me/api/v1/
 */
 
-router.use('/v1', require('./v1')); // TODO: Implement v1 api
+router.use('/tracker', require('./tracker'));
 
 module.exports = router;

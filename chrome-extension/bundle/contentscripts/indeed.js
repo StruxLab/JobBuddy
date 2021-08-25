@@ -1,5 +1,4 @@
-(function() {
-  'use strict';
+(() => {
   const jobCardContainer = document.getElementById('mosaic-provider-jobcards');
   const jbNotifications = document.createElement('div');
   jbNotifications.id = 'jb-notifications';
@@ -11,7 +10,7 @@
     const notificationMessage = document.createElement('div');
     notificationOuter.append(notificationTitle);
     notificationOuter.append(notificationMessage);
-    notificationOuter.className = 'jb-notif-outer jb-opaque jb-notif-style-' + style;
+    notificationOuter.className = `jb-notif-outer jb-opaque jb-notif-style-${style}`;
     notificationTitle.className = 'jb-notif-title';
     notificationMessage.className = 'jb-notif-message';
     notificationTitle.innerText = title;
@@ -56,7 +55,6 @@
 
   const handleSyncClick = ({ target }, dropDown) => {
     const postingNode = target.parentElement.parentElement.parentElement;
-    console.log(postingNode);
     const previousStatus = postingNode.getAttribute('data-jb-status');
     const postingMeta = {
       id: postingNode.getAttribute('data-jk'),
@@ -69,7 +67,7 @@
     };
     const responseHandler = ({ status, statusText }) => {
       console.log('responsed');
-        console.log(status, statusText);
+      console.log(status, statusText);
     };
     if (previousStatus === dropDown.value) return;
     postingNode.classList.remove(`jb-status-${previousStatus}`);
@@ -112,7 +110,7 @@
     });
     controls.append(dropDown);
     syncButton.className = 'jb-sync-button';
-    syncButton.style.backgroundImage = `url(${chrome.runtime.getURL("images/sync.png")})`;
+    syncButton.style.backgroundImage = `url(${chrome.runtime.getURL('images/sync.png')})`;
     syncButton.addEventListener('click', (event) => handleSyncClick(event, dropDown));
     controls.append(syncButton);
     node.firstChild.prepend(controls);
@@ -120,7 +118,7 @@
 
   const attachToTiles = () => {
     const jobPostingTiles = document.getElementsByClassName('result');
-    for (let i = 0; i < jobPostingTiles.length; i++) {
+    for (let i = 0; i < jobPostingTiles.length; i += 1) {
       const tile = jobPostingTiles[i];
       createControlPanel(tile);
     }
@@ -128,16 +126,13 @@
 
   const createMutationObserver = (node) => {
     const callback = (mutationsList, observer) => {
-      mutationsList.forEach(mutation => {
-          if (((mutation.attributeName === 'class' &&
-          ['uip-micro-content-provider', 'mosaic-provider-jobcards'].includes(mutation.target.id)) ||
-            (mutation.attributeName === 'style' &&
-            mutation.target.id === 'vjs-container')) &&
-            !document.getElementsByClassName('jb-controls').length)
-          {
-            attachToTiles();
-            observer.disconnect();
-          }
+      mutationsList.forEach((mutation) => {
+        if (((mutation.attributeName === 'class' && ['uip-micro-content-provider', 'mosaic-provider-jobcards'].includes(mutation.target.id))
+        || (mutation.attributeName === 'style' && mutation.target.id === 'vjs-container'))
+        && !document.getElementsByClassName('jb-controls').length) {
+          attachToTiles();
+          observer.disconnect();
+        }
       });
     };
     const observer = new MutationObserver(callback);
