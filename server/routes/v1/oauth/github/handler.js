@@ -1,7 +1,6 @@
 const router = require('express').Router();
+const GitHubModel = require('#models/v1/oauth/github.js');
 
-router.use('/', (req, res, next) => {
-  res.send('test');
-});
+router.get('/', GitHubModel);
 
 module.exports = router;

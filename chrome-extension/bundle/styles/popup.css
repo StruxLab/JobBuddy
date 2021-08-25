@@ -4,6 +4,26 @@ html {
   height: 250px;
   width: 250px;
 }
-#fakebutton {
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: .95em;
+}
+.auth-button {
+  border-radius: 3px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 80%;
+  padding: 8px;
+}
+#github-oauth {
   user-select: none;
+  background-color: #444;
+  border: 1px solid rgb(36, 36, 36);
+  color: #fff;
+  transition: background-color 0.5s;
+}
+#github-oauth:hover {
+  background-color: #222;
+  transition: background-color 0.5s;
 }
