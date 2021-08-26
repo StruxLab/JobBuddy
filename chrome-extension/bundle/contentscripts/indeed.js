@@ -1,6 +1,10 @@
 (() => {
   const jobCardContainer = document.getElementById('mosaic-provider-jobcards');
   const jbNotifications = document.createElement('div');
+  let memStore;
+  chrome.storage.local.get(['jb_token'], (result) => {
+    memStore = result;
+  });
   jbNotifications.id = 'jb-notifications';
   document.getElementsByTagName('html')[0].append(jbNotifications);
 
@@ -66,6 +70,9 @@
       salary: postingNode.getElementsByClassName('salary-snippet')[0]?.ariaLabel,
     };
     const responseHandler = ({ status, statusText }) => {
+      postingNode.classList.add(`jb-status-${dropDown.value}`);
+      pushNotification('Success!', 'Job saved to list!', 'green');
+      console.log('nothing before');
       console.log('responsed');
       console.log(status, statusText);
     };
@@ -74,22 +81,29 @@
     postingNode.setAttribute('data-jb-status', dropDown.value);
     // If previousStatus === null, then send entire payload
     console.log('here', previousStatus);
-    if (previousStatus === null) {
-      pushNotification('Success!', 'Job saved to list!', 'green');
-      console.log('nothing before');
+    if (previousStatus === null || 1) {
+      console.log(memStore);
+      fetch('http://localhost:40300/v1/tracker', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${memStore.jb_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postingMeta),
+        mode: 'cors',
+      })
+        .then(responseHandler)
+        .catch((e) => {
+          console.log(e);
+          pushNotification('Error!', 'Status failed to save.', 'red');
+        });
     } else {
       pushNotification('Success!', 'Tracking status updated', 'green');
     }
     // otherwise if nextstate is null, use delete
     // otherwise just send the status update
     if (dropDown.value) {
-      fetch('https://jobbuddy.mchan.me/api/hello', {
-        method: 'POST',
-        body: JSON.stringify(postingMeta),
-        mode: 'cors',
-      })
-        .then(responseHandler);
-      postingNode.classList.add(`jb-status-${dropDown.value}`);
+
     } else {
       confirm('Are you sure you want to remove this listing from your tracker?');
     }
@@ -116,12 +130,46 @@
     node.firstChild.prepend(controls);
   };
 
+  const stateChange = ({ data }) => {
+    console.log('here');
+    console.log(data);
+    data.forEach(({ external_id: id, status_code: status }) => {
+      const postElement = document.getElementById(`job_${id}`) || document.getElementById(`sj_${id}`);
+      postElement.setAttribute('data-jb-status', status);
+      postElement.classList.add(`jb-status-${status}`);
+    });
+  };
+
+  const getJobSaves = (jobIdList) => {
+    fetch('http://localhost:40300/v1/tracker/list', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${memStore.jb_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ids: jobIdList,
+          provider: 0,
+        }),
+        mode: 'cors',
+      })
+        .then(response => response.json())
+        .then(stateChange)
+        .catch((e) => {
+          console.log(e);
+          pushNotification('Error!', 'Status failed to save.', 'red');
+        });
+  };
+
   const attachToTiles = () => {
     const jobPostingTiles = document.getElementsByClassName('result');
+    const jobIdList = [];
     for (let i = 0; i < jobPostingTiles.length; i += 1) {
       const tile = jobPostingTiles[i];
       createControlPanel(tile);
+      jobIdList.push(tile.getAttribute('data-jk'));
     }
+    getJobSaves(jobIdList);
   };
 
   const createMutationObserver = (node) => {

@@ -17,7 +17,8 @@
     "pg": "^8.7.1"
   },
   "imports": {
-    "#models/*": "./models/*",
-    "#helpers/*": "./helpers/*"
+    "#models": "./models/index.js",
+    "#helpers/*": "./helpers/*",
+    "#database": "./database/index.js"
   }
 }
