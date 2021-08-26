@@ -13,9 +13,11 @@
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.7.1"
   },
   "imports": {
-    "#models/*": "./models/*"
+    "#models/*": "./models/*",
+    "#helpers/*": "./helpers/*"
   }
 }
