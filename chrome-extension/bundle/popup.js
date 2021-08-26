@@ -8,8 +8,6 @@ function authenticate(event) {
     interactive: true,
   }, (responseUrl) => {
     const url = new URL(responseUrl);
-    // console.log(url.searchParams.get('code'));
-    console.log(url);
     fetch(`http://localhost:40300/v1/oauth/github/handler${url.search}`, {
       mode: 'cors'
     })

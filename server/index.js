@@ -1,5 +1,6 @@
 const express = require('express');
-require('dotenv').config({ path: '.env' });
+require('dotenv').config();
+
 const responseHandler = require('./routes/responseHandler');
 
 const PORT = process.env.SERVER_PORT || 3000;
@@ -7,6 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(require('./models/v1/authentication'));
 
 app.use('/', require('./routes'));
 

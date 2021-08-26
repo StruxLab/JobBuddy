@@ -2,6 +2,8 @@
 
 const axios = require('axios');
 const qs = require('querystring');
+const jwt = require('jsonwebtoken');
+// require('crypto').randomBytes(64).toString('hex')
 
 const verifyWithGitHub = async (code) => {
   try {
@@ -27,13 +29,21 @@ const verifyWithGitHub = async (code) => {
   }
 };
 
+const generateAccessToken = (ghid) => {
+  return jwt.sign({
+    ghid,
+  }, process.env.JWT_TOKEN_SECRET, { expiresIn: 3600 });
+};
+
 const handler = async (req, res, next) => {
+  console.log(res.locals);
   res.setHeader('Access-Control-Allow-Origin', '*');
   const [authError, gitHubId] = await verifyWithGitHub(req.query.code);
   if (authError) {
     console.log(authError);
-    return next([authError]);
+    return next([400]);
   }
+  const token = generateAccessToken(gitHubId);
   return next([200, gitHubId]);
 };
 
