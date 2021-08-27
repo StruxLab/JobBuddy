@@ -35,7 +35,7 @@ const logout = event => {
   chrome.identity.clearAllCachedAuthTokens(() => {
     console.log('logged out');
   });
-  chrome.storage.remove('jb_token', () => {
+  chrome.storage.local.remove('jb_token', () => {
     console.log('token removed');
   });
 };
@@ -50,7 +50,8 @@ const getKeyFromStorage = (keys) => {
 };
 (async () => {
   const tokenFromStorage = await getKeyFromStorage(['jb_token']);
-  if (tokenFromStorage) {
+  console.log(tokenFromStorage.jb_token);
+  if (tokenFromStorage.jb_token) {
     ghSignInButton.remove();
     document.getElementById('logout').addEventListener('click', logout);
   } else {
