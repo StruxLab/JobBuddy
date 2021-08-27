@@ -9,6 +9,3 @@ module.exports = (arr) => {
     IN (${params.join(',')});
   `);
 };
-
-
-

@@ -40,13 +40,13 @@ const getList = async (req, res, next) => {
       provider,
       ...ids
     ]);
-    next([200, rows])
+    return next([200, rows])
   } catch (e) {
     console.log(e);
+    return next([500]);
   } finally {
     client.release();
   }
-  next([200]);
 }
 
 module.exports = {
