@@ -25,12 +25,17 @@
       "matches": ["https://*.indeed.com/*"],
       "css": ["/styles/indeed.css"],
       "js": ["/contentscripts/indeed.js"]
+    },
+    {
+      "matches": ["https://www.linkedin.com/*"],
+      "css": ["/styles/linkedin.css"],
+      "js": ["/contentscripts/linkedin.js"]
     }
   ],
   "web_accessible_resources": [
     {
       "resources": ["/images/sync.png"],
-      "matches": ["https://*.indeed.com/*"]
+      "matches": ["https://*.indeed.com/*", "https://www.linkedin.com/*"]
     }
   ]
 }
