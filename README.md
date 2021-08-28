@@ -7,5 +7,9 @@ The job search is hard enough, but how do you manage parsing through thousands o
 That's where JobBuddy comes in! JobBuddy integrates with the interfaces of some of the most popular job searching portals to keep you focused on the jobs you haven't applied to yet, so you can come to quicker decisions on whether you should spend your time applying to them.
 
 ## Supported Portals
-* Indeed.com (Working MVP)
-* LinkedIn.com (In Progress)
+- [x] Indeed.com (Working MVP)
+- [ ] LinkedIn.com (In Progress)
+- [ ] [Google for Jobs](https://www.google.com/search?q=Software+Engineer&ibp=htl;jobs) (Planned, High Priority)
+- [ ] Glassdoor.com (Planned, High Priority)
+- [ ] Monster.com (Planned)
+- [ ] ZipRecruiter.com (Planned)
