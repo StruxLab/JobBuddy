@@ -1,0 +1,20 @@
+/* Native Overrides */
+.job-card-container {
+  margin-bottom: 10px;
+}
+
+/* Custom Components */
+.jb-controls {
+  display: flex;
+  padding: 7px;
+  margin-bottom: 7px;
+  background-color: #d0f2ff;
+}
+
+.jb-logo {
+  background-color: #244a83;
+  color: white;
+  margin-right: 10px;
+  padding: 5px 9px;
+  border-radius: 5px;
+}

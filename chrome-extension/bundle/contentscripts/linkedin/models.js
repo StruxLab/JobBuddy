@@ -6,18 +6,66 @@ const Models = {
 };
 
 const Views = {
+  StatusSelector() {
+    const selector = document.createElement('select');
+    selector.className = 'jb-status-select';
+    const listOptions = [
+      ['', 'Select a status...'],
+      [1, 'Interested'],
+      [0, 'Not Interested'],
+      [2, 'Applied'],
+      [3, 'Interviewing'],
+      [4, 'Offer Received'],
+      [5, 'No Longer Pursuing'],
+    ];
+    listOptions.forEach(([value, text]) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.innerText = text;
+      selector.append(option);
+    });
+    return selector;
+  },
+  ListControls(node) {
+    const controlPanel = document.createElement('div');
+    controlPanel.className = 'jb-controls';
+    controlPanel.addEventListener('click', (event) => {
+      event.stopPropagation();
+    });
+    const logo = document.createElement('span');
+    logo.className = 'jb-logo';
+    logo.innerText = 'JobBuddy';
+    controlPanel.appendChild(logo);
+    controlPanel.appendChild(this.StatusSelector());
+    return controlPanel;
+    // const postingMeta = {
+    //   id: postingNode.getAttribute('data-jk'),
+    //   provider: 0, // Indeed
+    //   status: dropDown.value,
+    //   jobRole: postingNode.getElementsByClassName('jobTitle')[0].lastChild.textContent,
+    //   employer: postingNode.getElementsByClassName('companyName')[0].textContent,
+    //   location: postingNode.getElementsByClassName('companyLocation')[0].textContent,
+    //   salary: postingNode.getElementsByClassName('salary-snippet')[0]?.ariaLabel,
+    // };
+  },
+  DetailsControls() {
+
+  },
+};
+
+Models.Components = {
   JobListItem(mutationsList) {
     for (let i = 0; i < mutationsList.length; i += 1) {
       const mutation = mutationsList[i];
       for (let j = 0; j < mutation.addedNodes.length; j += 1) {
-        // console.log(mutation.addedNodes);
         const node = mutation.addedNodes[j];
-        if (node.classList?.contains('job-card-container')) {
+        if (node.classList?.contains('job-card-container') && !node.getElementsByClassName('jb-controls').length) {
           console.log(node);
           node.style.backgroundColor = 'red';
+          // node.parentElement.insertBefore(Views.ListControls(node), node);
+          node.insertBefore(Views.ListControls(node), node.firstChild);
         }
       }
-      // console.log(mutation);
     }
   },
   JobDetails() {
@@ -55,10 +103,15 @@ Models.Pages = {
   },
   jobsSearch() {
     const jobSearchList = document.getElementsByClassName('jobs-search-results__list')[0];
-    const jobSearchResults = jobSearchList.getElementsByClassName('jobs-search-results__list-item');
-    console.log(jobSearchList);
-    console.log(jobSearchResults);
-    Models.Observers.base(jobSearchList, Views.JobListItem, {
+    // We should identify existing rendered nodes before observing
+    const existingCards = document.getElementsByClassName('job-card-container');
+    for (let i = 0; i < existingCards.length; i += 1) {
+      const node = existingCards[i];
+      if (!node.getElementsByClassName('jb-controls').length) {
+        node.insertBefore(Views.ListControls(node), node.firstChild);
+      }
+    }
+    Models.Observers.base(jobSearchList, Models.Components.JobListItem, {
       attributes: false,
       childList: true,
       subtree: true,
