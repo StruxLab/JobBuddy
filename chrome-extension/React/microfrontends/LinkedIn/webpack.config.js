@@ -3,14 +3,14 @@ const path = require('path');
 module.exports = {
   entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'mfe-bundle.js',
+    path: path.resolve(__dirname, '../../../bundle/contentscripts'),
+    filename: 'linkedin.bundle.js',
   },
   mode: 'development',
   module: {
     rules: [
       {
-        test: /\.m?js$/,
+        test: /\.m?jsx?$/,
         exclude: /(node_modules|bower_components)/,
         use: {
           loader: 'babel-loader',
@@ -21,4 +21,5 @@ module.exports = {
       },
     ],
   },
+  devtool: 'cheap-module-source-map',
 };
