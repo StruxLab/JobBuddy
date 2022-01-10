@@ -1,19 +1,37 @@
-# JobBuddy
-
-| ⚠️ | This project is currently being redeveloped. Please refer to [v0.0.1](https://github.com/StruxLab/JobBuddy/tree/v0.0.1-alpha) for the most recent production. |
+| ⚠️ | This project is currently being redeveloped. Please refer to [v0.0.1](https://github.com/StruxLab/JobBuddy/tree/v0.0.1-alpha) for the most recent production release. |
 | --- | -- |
 
-# Currently Redeveloping
+# JobBuddy
 
-JobBuddy is a cross-platform application that assists jobseekers in tracking job postings that individuals are interested in and/or have applied to.
+Managing hundreds or even thousands of job applications across several job search portals is cumbersome, but JobBuddy makes this process a breeze by allowing users to efficiently visualize and organize the listings they don't want to or still need to action on.
 
-## The Problem
-The job search is hard enough, but how do you manage parsing through thousands of job postings? Did you consider this posting already? This one looks interesting, but also familiar- have you applied to it yet? Does this process have to be so manual?\
-\
-That's where JobBuddy comes in! JobBuddy integrates with the interfaces of some of the most popular job searching portals to keep you focused on the jobs you haven't applied to yet, so you can come to quicker decisions on whether you should spend your time applying to them.
+This product at its core is a Google Chrome extension connected with a Next.js API and PostgreSQL database, which allows for not only an organized view on the JobBuddy dashboard, but also right from each of the job boards that are supported.
+
+## Getting Started
+
+### Prerequisites
+
+### Installing
+
+## Running the Tests
+
+## Deployment
+
+## Built With
+
+## Contributing
+
+## Versioning
+We use [Semantic Versioning](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/StruxLab/JobBuddy/tags).
+
+## Authors
+
+## License
+
+## Acknowledgments
 
 ## Supported Job Boards
-- [x] Indeed.com (Working MVP)
+- [ ] Indeed.com (Working MVP)
 - [ ] LinkedIn.com (In Progress)
 - [ ] [Google for Jobs](https://www.google.com/search?q=Software+Engineer&ibp=htl;jobs) (Planned, High Priority)
 - [ ] Glassdoor.com (Planned, High Priority)
