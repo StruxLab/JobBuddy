@@ -16,6 +16,8 @@ This product at its core is a Google Chrome extension connected with a Next.js A
 
 ### Installing
 
+To start, compile and build out the Chrome extension's content scripts by running the following command from the project's root directory: ```npm run dev```.
+
 ## Running the Tests
 
 ## Deployment
