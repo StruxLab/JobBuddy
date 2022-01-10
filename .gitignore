@@ -1,6 +1,6 @@
 # Project Specific
-contentscripts/*.bundle.js
-contentscripts/*.bundle.js.map
+**/contentscripts/*.bundle.js
+**/contentscripts/*.bundle.js.map
 .DS_Store
 
 # Logs
