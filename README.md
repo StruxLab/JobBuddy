@@ -25,6 +25,7 @@ This product at its core is a Google Chrome extension connected with a Next.js A
 We use [Semantic Versioning](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/StruxLab/JobBuddy/tags).
 
 ## Authors
+* **Michael Chan** - *LinkedIn Chrome Content Script* - [WuksGG](https://github.com/WuksGG)
 
 ## License
 
