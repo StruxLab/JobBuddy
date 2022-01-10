@@ -8,22 +8,32 @@ const env = {
 };
 const callback = (mutationList, observer) => {
   if (env.location?.href !== window.location.href) {
-    console.log({
-      message: 'Page navigation detected',
-      old: env.location?.href,
-      new: window.location.href,
-    });
     env.location = { ...window.location };
     router(window.location);
   }
   mutationList.forEach((mutation) => {
+    const mutationNode = mutation.target;
+    if (mutationNode.nodeName !== 'DIV') return;
+    if (mutationNode.dataset.jobbuddyAttached) return; // Hooked, prevent repeats/loops
+    // console.log('mutationdetected');
     // console.log(mutation);
     // if (mutation.target?.classList.contains('jobs-search-results__list-item')) {
-    if (mutation.target?.classList.contains('job-card-container')) {
-      mutation.target.style.backgroundColor = 'red';
-      mutation.target.classList.add('hello');
-      console.log(mutation);
-      console.log(mutation.classList);
+    if (mutationNode.classList.contains('jobs-search-results__list')) {
+      const renderedPostings = document.getElementsByClassName('job-card-container');
+      for (let i = 0; i < renderedPostings.length; i += 1) {
+        console.log(renderedPostings[i]);
+      }
+    }
+    if (mutationNode.classList.contains('job-card-container')) {
+      mutationNode.dataset.jobbuddyAttached = true;
+      const jobBuddyListItemPanel = document.createElement('div');
+      jobBuddyListItemPanel.className = 'jb-control-panel';
+      // console.log(mutation.target.dataset);
+      mutationNode.prepend(jobBuddyListItemPanel);
+      ReactDOM.render(<App />, jobBuddyListItemPanel);
+      mutationNode.style.backgroundColor = 'red';
+      // console.log(mutation);
+      // console.log(mutation.target.classList);
     }
   });
 };
