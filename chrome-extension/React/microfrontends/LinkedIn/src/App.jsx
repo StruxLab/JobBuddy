@@ -20,6 +20,7 @@ export default function App({ node }) {
       style={{
         padding: '5px',
         backgroundColor: 'orange',
+        marginBottom: '4px',
       }}
       onClick={clickHandler}
       aria-hidden="true"
