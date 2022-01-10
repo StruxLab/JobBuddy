@@ -19,7 +19,9 @@ const callback = (mutationList, observer) => {
     // console.log(mutation);
     // if (mutation.target?.classList.contains('jobs-search-results__list-item')) {
     if (mutationNode.classList.contains('jobs-search-results__list')) {
+      console.log('here');
       const renderedPostings = document.getElementsByClassName('job-card-container');
+      console.log(renderedPostings);
       for (let i = 0; i < renderedPostings.length; i += 1) {
         console.log(renderedPostings[i]);
       }
@@ -30,7 +32,7 @@ const callback = (mutationList, observer) => {
       jobBuddyListItemPanel.className = 'jb-control-panel';
       // console.log(mutation.target.dataset);
       mutationNode.prepend(jobBuddyListItemPanel);
-      ReactDOM.render(<App />, jobBuddyListItemPanel);
+      ReactDOM.render(<App node={mutationNode} />, jobBuddyListItemPanel);
       mutationNode.style.backgroundColor = 'red';
       // console.log(mutation);
       // console.log(mutation.target.classList);
