@@ -1,4 +1,7 @@
-# JobBuddy BETA
+# JobBuddy
+
+| ⚠️ | This project is currently being redeveloped. Please refer to [v0.0.1](https://github.com/StruxLab/JobBuddy/tree/v0.0.1-alpha) for the most recent production. |
+| --- | -- |
 
 # Currently Redeveloping
 
