@@ -11,6 +11,9 @@ This product at its core is a Google Chrome extension connected with a Next.js A
 
 ### Prerequisites
 
+* [Node.js v14+](https://nodejs.org/en/)
+* [PostgreSQL 11+](https://www.postgresql.org/)
+
 ### Installing
 
 ## Running the Tests
