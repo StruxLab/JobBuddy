@@ -21,6 +21,9 @@ if [ ${#PGHOST} == 0 ] || [ ${#PGUSER} == 0 ]; then
   printf "Please check your ${BOLD}.env.local${NC} file and make sure all expected fields are populated.\n\n"
 fi
 
+printf "${GREEN}${BOLD}.env.local file loaded successfully. Running SQL scripts...${NC}\n\n"
 
+psql -d postgres -f $PWD/sql/createDb.sql -v v1="$PGDATABASE"
+psql -f $PWD/sql/createTables.sql
 
-# psql -U postgres -f $PWD/sql/createDb.sql
+printf "\n${GREEN}${BOLD}Script complete!${NC}\n\n"
