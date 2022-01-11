@@ -15,9 +15,7 @@ const callback = (mutationList, observer) => {
     const mutationNode = mutation.target;
     if (mutationNode.nodeName !== 'DIV') return;
     if (mutationNode.dataset.jobbuddyAttached) return; // Hooked, prevent repeats/loops
-    // console.log('mutationdetected');
-    // console.log(mutation);
-    // if (mutation.target?.classList.contains('jobs-search-results__list-item')) {
+
     if (mutationNode.classList.contains('jobs-search-results__list')) {
       console.log('here');
       const renderedPostings = document.getElementsByClassName('job-card-container');
@@ -30,12 +28,20 @@ const callback = (mutationList, observer) => {
       mutationNode.dataset.jobbuddyAttached = true;
       const jobBuddyListItemPanel = document.createElement('div');
       jobBuddyListItemPanel.className = 'jb-control-panel';
-      // console.log(mutation.target.dataset);
       mutationNode.prepend(jobBuddyListItemPanel);
       ReactDOM.render(<SearchItemControlPanel node={mutationNode} />, jobBuddyListItemPanel);
       mutationNode.style.backgroundColor = 'red';
-      // console.log(mutation);
-      // console.log(mutation.target.classList);
+    }
+    if (mutationNode.classList.contains('jobs-search__job-details--container') || mutationNode.classList.contains('jobs-unified-top-card')) {
+      console.log('match!!!');
+      mutationNode.setAttribute('style', 'background-color: orange!important');
+      mutationNode.dataset.jobbuddyAttached = true;
+      mutationNode.classList.add('jobbuddyyy');
+    }
+    if (mutationNode.classList.contains('jobs-s-apply')) {
+      mutationNode.dataset.jobbuddyAttached = true;
+      mutationNode.parentNode.parentNode.style.backgroundColor = 'orange!important';
+      mutationNode.parentNode.parentNode.classList.add('jobbuddyyy');
     }
   });
 };
