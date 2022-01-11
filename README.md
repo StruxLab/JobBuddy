@@ -1,5 +1,18 @@
-| ⚠️ | This project is currently being redeveloped. Please refer to [v0.0.1](https://github.com/StruxLab/JobBuddy/tree/v0.0.1-alpha) for the most recent production release. |
-| --- | -- |
+<table>
+<tr>
+<td>
+⚠️
+</td>
+<td align="center">
+<br />
+<span><b>
+  This project is currently being redeveloped. <br />
+  Please refer to <a href="https://github.com/StruxLab/JobBuddy/tree/v0.0.1-alpha">v0.0.1</a> for the most recent production release.
+</b></span>
+<img width="881" height="0">
+</td>
+</tr>
+</table>
 
 # JobBuddy
 
@@ -24,17 +37,26 @@ To start, compile and build out the Chrome extension's content scripts by runnin
 
 ## Built With
 
+* [Next.js](https://nextjs.org/)
+* [React.js](https://reactjs.org/)
+* [React Native](https://reactnative.dev/)
+* [MUI (Material UI)](https://mui.com/)
+* [Manifest V3 for Chrome Extensions](https://developer.chrome.com/docs/extensions/mv3/intro/)
+
 ## Contributing
 
 ## Versioning
 We use [Semantic Versioning](https://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/StruxLab/JobBuddy/tags).
 
 ## Authors
+
 * **Michael Chan** - *LinkedIn Chrome Content Script* - [WuksGG](https://github.com/WuksGG)
 
 ## License
 
 ## Acknowledgments
+
+* [othneildrew/Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
 ## Supported Job Boards
 - [ ] Indeed.com (Working MVP)
