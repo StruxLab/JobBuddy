@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App.jsx';
+import SearchItemControlPanel from './components/ControlPanel/TilePanel.jsx';
 import router from './models/router';
 
 const env = {
@@ -32,7 +32,7 @@ const callback = (mutationList, observer) => {
       jobBuddyListItemPanel.className = 'jb-control-panel';
       // console.log(mutation.target.dataset);
       mutationNode.prepend(jobBuddyListItemPanel);
-      ReactDOM.render(<App node={mutationNode} />, jobBuddyListItemPanel);
+      ReactDOM.render(<SearchItemControlPanel node={mutationNode} />, jobBuddyListItemPanel);
       mutationNode.style.backgroundColor = 'red';
       // console.log(mutation);
       // console.log(mutation.target.classList);
