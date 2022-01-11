@@ -40,7 +40,7 @@ const callback = (mutationList, observer) => {
     }
     if (mutationNode.classList.contains('jobs-s-apply')) {
       mutationNode.dataset.jobbuddyAttached = true;
-      mutationNode.parentNode.parentNode.style.backgroundColor = 'orange!important';
+      mutationNode.parentNode.parentNode.setAttribute('style', 'background-color: orange!important');
       mutationNode.parentNode.parentNode.classList.add('jobbuddyyy');
     }
   });
