@@ -2,6 +2,7 @@
 **/contentscripts/*.bundle.js
 **/contentscripts/*.bundle.js.map
 .DS_Store
+.env.local
 
 # Logs
 logs
