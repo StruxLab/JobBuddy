@@ -1,3 +1,5 @@
+<div id="top"></div>
+
 <table>
 <tr>
 <td>
@@ -14,7 +16,30 @@
 </tr>
 </table>
 
-# JobBuddy
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/othneildrew/Best-README-Template">
+    <img src="images/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">JobBuddy</h3>
+
+  <p align="center">
+    An awesome README template to jumpstart your projects!
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+  </p>
+</div>
+
+## About the Project
 
 Managing hundreds or even thousands of job applications across several job search portals is cumbersome, but JobBuddy makes this process a breeze by allowing users to efficiently visualize and organize the listings they don't want to or still need to action on.
 
@@ -42,6 +67,20 @@ To start, compile and build out the Chrome extension's content scripts by runnin
 * [React Native](https://reactnative.dev/)
 * [MUI (Material UI)](https://mui.com/)
 * [Manifest V3 for Chrome Extensions](https://developer.chrome.com/docs/extensions/mv3/intro/)
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] Build out Chrome Extension for LinkedIn
+- [ ] Establish SQL Schema
+- [ ] Build out API routes and models
+- [ ] Connect Chrome Extension with API
+- [ ] Build out Next.js web application
+- [ ] Build out React Native application
+
+See the [open issues](https://github.com/StruxLab/JobBuddy/issues) for a full list of proposed features (and known issues).
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contributing
 
