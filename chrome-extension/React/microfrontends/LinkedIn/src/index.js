@@ -32,12 +32,12 @@ const callback = (mutationList, observer) => {
       ReactDOM.render(<SearchItemControlPanel node={mutationNode} />, jobBuddyListItemPanel);
       mutationNode.style.backgroundColor = 'red';
     }
-    if (mutationNode.classList.contains('jobs-search__job-details--container') || mutationNode.classList.contains('jobs-unified-top-card')) {
-      console.log('match!!!');
-      mutationNode.setAttribute('style', 'background-color: orange!important');
-      mutationNode.dataset.jobbuddyAttached = true;
-      mutationNode.classList.add('jobbuddyyy');
-    }
+    // if (mutationNode.classList.contains('jobs-search__job-details--container')) {
+    //   console.log('match!!!');
+    //   mutationNode.setAttribute('style', 'background-color: orange!important');
+    //   mutationNode.dataset.jobbuddyAttached = true;
+    //   mutationNode.classList.add('jobbuddyyy');
+    // }
     if (mutationNode.classList.contains('jobs-s-apply')) {
       mutationNode.dataset.jobbuddyAttached = true;
       mutationNode.parentNode.parentNode.setAttribute('style', 'background-color: orange!important');
