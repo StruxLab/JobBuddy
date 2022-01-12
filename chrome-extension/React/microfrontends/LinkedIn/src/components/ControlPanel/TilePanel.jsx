@@ -17,6 +17,7 @@ export default function TilePanel({ node }) {
         padding: '5px',
         backgroundColor: 'orange',
         marginBottom: '9px',
+        borderRadius: '10px 10px 0 0',
       }}
       onClick={clickHandler}
       aria-hidden="true"
