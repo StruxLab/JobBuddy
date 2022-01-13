@@ -1,3 +1,5 @@
+import models from './';
+
 function parseParams(search) {
   const parsedParams = {};
   if (!search) {
@@ -11,19 +13,24 @@ function parseParams(search) {
   return parsedParams;
 }
 
-export default function router ({ pathname, search }) {
+export default function router({ pathname, search }, mutationList) {
   const locationPath = pathname.split('/').slice(1, -1);
-  console.log(locationPath);
-  const routes = {
-    '/jobs/': 'match!',
-    '/jobs/search/': 'match!',
-    '/jobs/collections/': 'match!',
-    '/jobs/collections/recommended/': 'match!',
-  };
-  console.log(routes);
-  console.log(pathname);
-  console.log(routes[pathname], pathname);
-  console.log(parseParams(search));
+  if (locationPath[0] !== 'jobs') return;
 
+  mutationList.forEach((mutation) => {
+    const mutationNode = mutation.target;
+    if (!['UL', 'DIV'].includes(mutationNode.nodeName) || mutationNode.dataset.jobbuddyAttached) return;
 
-};
+    if (mutationNode.classList.contains('jobs-search-results__list')) {
+      models.processList(mutationNode);
+    }
+    if (mutationNode.classList.contains('job-card-container')) {
+      models.processTile(mutationNode);
+    }
+    if (mutationNode.classList.contains('jobs-s-apply')) {
+      mutationNode.dataset.jobbuddyAttached = true;
+      mutationNode.parentNode.parentNode.setAttribute('style', 'background-color: orange!important');
+      mutationNode.parentNode.parentNode.classList.add('jobbuddyyy');
+    }
+  });
+}

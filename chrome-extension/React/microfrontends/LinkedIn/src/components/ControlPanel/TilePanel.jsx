@@ -1,3 +1,4 @@
+// Entry point into Tile
 import React from 'react';
 
 export default function TilePanel({ node }) {
