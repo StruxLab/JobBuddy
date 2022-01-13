@@ -19,7 +19,8 @@ export default function router({ pathname, search }, mutationList) {
 
   mutationList.forEach((mutation) => {
     const mutationNode = mutation.target;
-    if (!['UL', 'DIV'].includes(mutationNode.nodeName) || mutationNode.dataset.jobbuddyAttached) return;
+    if (!['UL', 'DIV'].includes(mutationNode.nodeName)
+    || mutationNode.dataset.jobbuddyAttached) return;
 
     if (mutationNode.classList.contains('jobs-search-results__list')) {
       models.processList(mutationNode);
