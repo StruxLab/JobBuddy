@@ -30,7 +30,7 @@ const callback = (mutationList, observer) => {
       jobBuddyListItemPanel.className = 'jb-control-panel';
       mutationNode.prepend(jobBuddyListItemPanel);
       ReactDOM.render(<SearchItemControlPanel node={mutationNode} />, jobBuddyListItemPanel);
-      mutationNode.setAttribute('style', 'background-color: #ffbebe; border-radius: 10px; padding-top: 0!important; border: 1px solid #ffa9a9;');
+      mutationNode.setAttribute('style', 'background-color: #ffbebe; border-radius: 10px; border: 1px solid #ffa9a9;');
     }
     // if (mutationNode.classList.contains('jobs-search__job-details--container')) {
     //   console.log('match!!!');
