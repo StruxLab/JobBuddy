@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, '../../bundle/contentscripts'),
     filename: 'linkedin.bundle.js',
@@ -10,16 +10,20 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.m?jsx?$/,
+        test: /\.m?tsx?$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-react'],
-          },
-        },
+        use: 'ts-loader',
+        // use: {
+        //   loader: 'ts-loader',
+        //   options: {
+        //     presets: ['@babel/preset-react'],
+        //   },
+        // },
       },
     ],
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
   },
   devtool: 'cheap-module-source-map',
 };

@@ -1,14 +1,17 @@
 // Entry point into Tile
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-export default function TilePanel({ node }) {
+interface TilePanelProps {
+  node: HTMLElement,
+};
+export default function TilePanel({ node }: TilePanelProps): ReactElement {
   const jobMetaData = {
     title: node.getElementsByClassName('job-card-list__title')[0].innerText,
     company: node.getElementsByClassName('job-card-container__company-name')[0].innerText,
     location: node.getElementsByClassName('job-card-container__metadata-item')[0].innerText,
     jobId: node.dataset.jobId,
   };
-  function clickHandler(e) {
+  function clickHandler(e: React.MouseEvent<HTMLElement>) {
     e.stopPropagation();
     console.log(jobMetaData);
   }

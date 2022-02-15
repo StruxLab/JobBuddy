@@ -1,7 +1,10 @@
 
 import router from './models/router';
 
-const env = {
+interface Env {
+  location: null | Location,
+};
+const env: Env = {
   location: null,
 };
 const callback = (mutationList, observer) => {
@@ -10,8 +13,13 @@ const callback = (mutationList, observer) => {
   }
   router(window.location, mutationList);
 };
-const targetNode = document.getElementsByClassName('application-outlet')[0] || document.body;
-const config = { attributes: false, childList: true, subtree: true };
+const targetNode = document.getElementsByClassName('application-outlet')[0]
+  || document.body;
+const config = {
+  attributes: false,
+  childList: true,
+  subtree: true
+};
 const observer = new MutationObserver(callback);
 
 observer.observe(targetNode, config);
