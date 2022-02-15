@@ -2,7 +2,6 @@ import { signIn, getSession } from 'next-auth/react';
 import type { ReactElement } from 'react';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-declare type ISODateString = string;
 interface LoginProps {
     user?: {
         name?: string | null;
