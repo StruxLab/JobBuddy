@@ -40,7 +40,6 @@ interface GetServerSideProps {
 };
 
 export async function getServerSideProps(context: Context): Promise<GetServerSideProps> {
-  console.log(context);
   const session = await getSession(context);
   return {
     props: {
