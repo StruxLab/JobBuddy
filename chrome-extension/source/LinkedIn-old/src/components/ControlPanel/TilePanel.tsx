@@ -5,8 +5,9 @@ interface TilePanelProps {
   node: HTMLElement,
 };
 export default function TilePanel({ node }: TilePanelProps): ReactElement {
+  const titleNode: HTMLElement = node.getElementsByClassName('job-card-list__title')[0];
   const jobMetaData = {
-    title: node.getElementsByClassName('job-card-list__title')[0].innerText,
+    title: titleNode?.innerText,
     company: node.getElementsByClassName('job-card-container__company-name')[0].innerText,
     location: node.getElementsByClassName('job-card-container__metadata-item')[0].innerText,
     jobId: node.dataset.jobId,
