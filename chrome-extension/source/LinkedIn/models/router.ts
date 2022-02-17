@@ -1,42 +1,45 @@
-function parseParams(search) {
-  const parsedParams = {};
-  if (!search) {
-    return {};
-  }
-  const params = search.substring(1).split('&');
-  for (let i = 0; i < params.length; i += 1) {
-    const [paramKey, paramVal] = params[i].split('=');
-    parsedParams[paramKey] = paramVal;
-  }
-  return parsedParams;
-}
+import processList from '../models/processList';
+import processTile from '../models/processTile';
 
-interface Props {
-  pathname: string,
-  search: string,
+// const parseParams = (search) => {
+//   const parsedParams = {};
+//   if (!search) {
+//     return {};
+//   }
+//   const params = search.substring(1).split('&');
+//   for (let i = 0; i < params.length; i += 1) {
+//     const [paramKey, paramVal] = params[i].split('=');
+//     parsedParams[paramKey] = paramVal;
+//   }
+//   return parsedParams;
+// }
+
+
+interface Router {
+  (arg0: Location, arg1: MutationRecord[]): void;
 };
-// interface Router {
-//   (Props, MutationRecord[]): void;
-// };
-export default function router({ pathname, search }, mutationList) {
+
+const router: Router = ({ pathname, search }, mutationList) => {
   const locationPath = pathname.split('/').slice(1, -1);
   if (locationPath[0] !== 'jobs') return;
 
   mutationList.forEach((mutation) => {
-    const mutationNode = mutation.target;
-    if (!['UL', 'DIV'].includes(mutationNode.nodeName)
-    || mutationNode.dataset.jobbuddyAttached) return;
+    const mutationNode = (mutation.target as HTMLElement);
+    if (!(['UL', 'DIV'].indexOf(mutationNode.nodeName) > -1)
+      || mutationNode.dataset.jobbuddyAttached) return;
 
     if (mutationNode.classList.contains('jobs-search-results__list')) {
-      models.processList(mutationNode);
+      processList(mutationNode);
     }
     if (mutationNode.classList.contains('job-card-container')) {
-      models.processTile(mutationNode);
+      processTile(mutationNode);
     }
-    if (mutationNode.classList.contains('jobs-s-apply')) {
-      mutationNode.dataset.jobbuddyAttached = true;
-      mutationNode.parentNode.parentNode.setAttribute('style', 'background-color: orange!important');
-      mutationNode.parentNode.parentNode.classList.add('jobbuddyyy');
-    }
+    // if (mutationNode.classList.contains('jobs-s-apply')) {
+    //   mutationNode.dataset.jobbuddyAttached = true;
+    //   mutationNode.parentNode.parentNode.setAttribute('style', 'background-color: orange!important');
+    //   mutationNode.parentNode.parentNode.classList.add('jobbuddyyy');
+    // }
   });
 }
+
+export default router;

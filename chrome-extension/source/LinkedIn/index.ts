@@ -2,18 +2,13 @@
 import router from './models/router';
 
 let location: (Location | null) = null;
-interface Env {
-  location: null | Location,
-};
-const env: Env = {
-  location: null,
-};
+
 const callback: MutationCallback = (
   mutationList,
   observer,
 ) => {
-  if (env.location?.href !== window.location.href) {
-    env.location = { ...window.location };
+  if (location?.href !== window.location.href) {
+    location = { ...window.location };
   }
   router(window.location, mutationList);
 };
