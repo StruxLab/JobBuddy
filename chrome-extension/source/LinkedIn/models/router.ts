@@ -34,11 +34,11 @@ const router: Router = ({ pathname, search }, mutationList) => {
     if (mutationNode.classList.contains('job-card-container')) {
       processTile(mutationNode);
     }
-    // if (mutationNode.classList.contains('jobs-s-apply')) {
-    //   mutationNode.dataset.jobbuddyAttached = true;
-    //   mutationNode.parentNode.parentNode.setAttribute('style', 'background-color: orange!important');
-    //   mutationNode.parentNode.parentNode.classList.add('jobbuddyyy');
-    // }
+    if (mutationNode.classList.contains('jobs-s-apply')) {
+      mutationNode.dataset.jobbuddyAttached = 'true';
+      (mutationNode.parentNode.parentNode as HTMLElement).setAttribute('style', 'background-color: orange!important');
+      (mutationNode.parentNode.parentNode as HTMLElement).classList.add('jobbuddyyy');
+    }
   });
 }
 
