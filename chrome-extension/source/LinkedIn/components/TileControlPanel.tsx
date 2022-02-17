@@ -2,9 +2,9 @@
 import React, { ReactElement } from 'react';
 
 interface TilePanelProps {
-  node: HTMLElement,
+  (arg0: { node: HTMLElement }): ReactElement;
 };
-export default function TilePanel({ node }: TilePanelProps): ReactElement {
+const TilePanel: TilePanelProps = ({ node }) => {
   const jobMetaData = {
     title: (node.getElementsByClassName('job-card-list__title')[0] as HTMLElement)?.innerText,
     company: (node.getElementsByClassName('job-card-container__company-name')[0] as HTMLElement)?.innerText,
@@ -30,3 +30,5 @@ export default function TilePanel({ node }: TilePanelProps): ReactElement {
     </div>
   );
 }
+
+export default TilePanel;
