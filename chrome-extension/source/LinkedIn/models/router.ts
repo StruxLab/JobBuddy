@@ -11,13 +11,14 @@ function parseParams(search) {
   return parsedParams;
 }
 
-interface Router {
-  ({
-    pathname: string,
-    search: string,
-  }, mutationList: MutationRecord[]): void;
-}
-export default function router({ pathname, search }, mutationList): Router {
+interface Props {
+  pathname: string,
+  search: string,
+};
+// interface Router {
+//   (Props, MutationRecord[]): void;
+// };
+export default function router({ pathname, search }, mutationList) {
   const locationPath = pathname.split('/').slice(1, -1);
   if (locationPath[0] !== 'jobs') return;
 
