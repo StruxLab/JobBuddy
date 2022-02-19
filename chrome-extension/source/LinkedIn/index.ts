@@ -1,12 +1,18 @@
 
-import router from './models/router';
+import router, { hookOnNode } from './models/router';
 
 let location: (Location | null) = null;
 
 const callback: MutationCallback = (
   mutationList,
-  observer,
+  // observer,
 ) => {
+  if (!location) {
+    const nodes = document.getElementsByClassName('job-card-container');
+    for (let i = 0; i < nodes.length; i += 1) {
+      hookOnNode((nodes[i] as HTMLElement));
+    }
+  }
   if (location?.href !== window.location.href) {
     location = { ...window.location };
   }
