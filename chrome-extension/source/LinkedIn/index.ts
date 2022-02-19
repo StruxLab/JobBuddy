@@ -1,5 +1,6 @@
 
 import router, { hookOnNode } from './models/router';
+import axios from 'axios';
 
 let location: (Location | null) = null;
 
@@ -8,9 +9,12 @@ const callback: MutationCallback = async (
 ) => {
   if (!location) {
     const nodes = document.getElementsByClassName('job-card-container');
+    const jobIdsToCheck = [];
     for (let i = 0; i < nodes.length; i += 1) {
       console.log(nodes[i]);
+      jobIdsToCheck.push((nodes[i] as HTMLElement).dataset.jobId);
     }
+    console.log(jobIdsToCheck);
     for (let i = 0; i < nodes.length; i += 1) {
       hookOnNode((nodes[i] as HTMLElement));
     }
