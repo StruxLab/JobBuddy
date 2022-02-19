@@ -39,7 +39,7 @@ interface Router {
 const router: Router = ({ pathname, search }, mutationList) => {
   const locationPath = pathname.split('/').slice(1, -1);
   if (locationPath[0] !== 'jobs') return;
-  // console.log(mutationList);
+
   mutationList.forEach((mutation) => {
     const mutationNode = (mutation.target as HTMLElement);
     if (!(['UL', 'DIV'].indexOf(mutationNode.nodeName) > -1)

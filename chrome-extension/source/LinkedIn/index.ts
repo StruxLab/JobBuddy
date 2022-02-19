@@ -5,7 +5,6 @@ let location: (Location | null) = null;
 
 const callback: MutationCallback = (
   mutationList,
-  // observer,
 ) => {
   if (!location) {
     const nodes = document.getElementsByClassName('job-card-container');
