@@ -3,11 +3,14 @@ import router, { hookOnNode } from './models/router';
 
 let location: (Location | null) = null;
 
-const callback: MutationCallback = (
+const callback: MutationCallback = async (
   mutationList,
 ) => {
   if (!location) {
     const nodes = document.getElementsByClassName('job-card-container');
+    for (let i = 0; i < nodes.length; i += 1) {
+      console.log(nodes[i]);
+    }
     for (let i = 0; i < nodes.length; i += 1) {
       hookOnNode((nodes[i] as HTMLElement));
     }
