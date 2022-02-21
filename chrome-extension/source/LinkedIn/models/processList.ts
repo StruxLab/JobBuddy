@@ -16,7 +16,7 @@ const processList: ProcessList = (node) => {
     jobPostElement.dataset.jobPostingId = postId;
     jobIds.push(postId);
   }
-  console.log(jobIds);
+  if (jobIds.length) console.log(jobIds);
 };
 
 export default processList;

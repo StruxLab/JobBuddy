@@ -7,13 +7,13 @@ let location: (Location | null) = null;
 const callback: MutationCallback = async (
   mutationList,
 ) => {
-  if (!location) {
-    const nodes = document.getElementsByClassName('job-card-container');
-    for (let i = 0; i < nodes.length; i += 1) {
-      hookOnNode(nodes[i] as HTMLElement);
-    }
-  }
   if (location?.href !== window.location.href) {
+    if (!location) {
+      const nodes = document.getElementsByClassName('job-card-container');
+      for (let i = 0; i < nodes.length; i += 1) {
+        hookOnNode(nodes[i] as HTMLElement);
+      }
+    }
     location = { ...window.location };
     router(window.location, mutationList, true);
   } else {
