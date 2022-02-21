@@ -20,9 +20,6 @@ interface HookOnNode {
   (arg0: HTMLElement): void;
 };
 export const hookOnNode: HookOnNode = (mutationNode) => {
-  if (mutationNode.classList.contains('jobs-search-results__list')) {
-    processList(mutationNode);
-  }
   if (mutationNode.classList.contains('job-card-container')) {
     processTile(mutationNode);
   }
@@ -34,16 +31,19 @@ export const hookOnNode: HookOnNode = (mutationNode) => {
 }
 
 interface Router {
-  (arg0: Location, arg1: MutationRecord[]): void;
+  (arg0: Location, arg1: MutationRecord[], arg2: boolean): void;
 };
-const router: Router = ({ pathname, search }, mutationList) => {
+const router: Router = ({ pathname, search }, mutationList, locationChanged) => {
   const locationPath = pathname.split('/').slice(1, -1);
   if (locationPath[0] !== 'jobs') return;
+  if (locationChanged) {
+    const jobsResultList = document.getElementsByClassName('jobs-search-results-list');
+    processList(jobsResultList[0] as HTMLElement);
+  }
   mutationList.forEach((mutation) => {
     const mutationNode = (mutation.target as HTMLElement);
     if (!(['UL', 'DIV'].indexOf(mutationNode.nodeName) > -1)
       || mutationNode.dataset.jobbuddyAttached) return;
-
     hookOnNode(mutationNode);
   });
 }
