@@ -8,21 +8,6 @@ const callback: MutationCallback = async (
   mutationList,
 ) => {
   if (!location) {
-    // const elList = document.getElementsByClassName('jobs-search-results__list-item');
-    // const jobIdsList: string[] = [];
-    // for (let i = 0; i < elList.length; i += 1) {
-    //   const element = (elList[i] as HTMLElement);
-    //   const jobPostingId = element
-    //     .dataset
-    //     .occludableEntityUrn
-    //     .split(':')
-    //     .pop();
-    //   // console.log(jobPostingId);
-    //   jobIdsList.push(jobPostingId);
-    //   element.dataset.test = '1';
-    // }
-    // console.log(jobIdsList);
-
     // const jobIdsToCheck: string[] = [];
     // for (let i = 0; i < nodes.length; i += 1) {
       //   console.log(nodes[i]);
@@ -32,7 +17,7 @@ const callback: MutationCallback = async (
       // console.log(jobIdsToCheck);
     const nodes = document.getElementsByClassName('job-card-container');
     for (let i = 0; i < nodes.length; i += 1) {
-      hookOnNode((nodes[i] as HTMLElement));
+      hookOnNode(nodes[i] as HTMLElement);
     }
   }
   if (location?.href !== window.location.href) {

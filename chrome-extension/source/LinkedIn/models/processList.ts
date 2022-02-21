@@ -3,9 +3,8 @@ interface ProcessList {
 }
 
 const processList: ProcessList = (node) => {
-  node.dataset.jobbuddyAttached = 'true';
   const renderedPostings = node.getElementsByClassName('jobs-search-results__list-item');
-  const jobIds = [];
+  const jobIds: string[] = [];
   for (let i = 0; i < renderedPostings.length; i += 1) {
     const jobPostElement = renderedPostings[i] as HTMLElement;
     const postId = jobPostElement
@@ -13,6 +12,8 @@ const processList: ProcessList = (node) => {
       .occludableEntityUrn
       .split(':')
       .pop();
+    if (jobPostElement.dataset.jobPostingId === postId) continue;
+    jobPostElement.dataset.jobPostingId = postId;
     jobIds.push(postId);
   }
   console.log(jobIds);
