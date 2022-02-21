@@ -37,7 +37,7 @@ const router: Router = ({ pathname, search }, mutationList, locationChanged) => 
   const locationPath = pathname.split('/').slice(1, -1);
   if (locationPath[0] !== 'jobs') return;
   if (locationChanged) {
-    const jobsResultList = document.getElementsByClassName('jobs-search-results-list');
+    const jobsResultList = document.getElementsByClassName('jobs-search-results');
     processList(jobsResultList[0] as HTMLElement);
   }
   mutationList.forEach((mutation) => {
