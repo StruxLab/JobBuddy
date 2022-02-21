@@ -36,14 +36,17 @@ interface Router {
 const router: Router = ({ pathname, search }, mutationList, locationChanged) => {
   const locationPath = pathname.split('/').slice(1, -1);
   if (locationPath[0] !== 'jobs') return;
-  if (locationChanged) {
-    const jobsResultList = document.getElementsByClassName('jobs-search-results');
-    processList(jobsResultList[0] as HTMLElement);
-  }
+  const jobsResultList = document.getElementsByClassName('jobs-search-results')[0] as HTMLElement;
+  // if (locationChanged) {
+  //   processList(jobsResultList);
+  // }
   mutationList.forEach((mutation) => {
     const mutationNode = (mutation.target as HTMLElement);
-    if (!(['UL', 'DIV'].indexOf(mutationNode.nodeName) > -1)
+    if (!(['DIV', 'LI'].indexOf(mutationNode.nodeName) > -1)
       || mutationNode.dataset.jobbuddyAttached) return;
+    if (mutationNode.classList.contains('jobs-search-results__list-item')) {
+      processList(jobsResultList);
+    }
     hookOnNode(mutationNode);
   });
 }
