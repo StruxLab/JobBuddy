@@ -8,13 +8,6 @@ const callback: MutationCallback = async (
   mutationList,
 ) => {
   if (!location) {
-    // const jobIdsToCheck: string[] = [];
-    // for (let i = 0; i < nodes.length; i += 1) {
-      //   console.log(nodes[i]);
-      //   // occludable-entity-urn
-      //   jobIdsToCheck.push((nodes[i] as HTMLElement).dataset.jobId);
-      // }
-      // console.log(jobIdsToCheck);
     const nodes = document.getElementsByClassName('job-card-container');
     for (let i = 0; i < nodes.length; i += 1) {
       hookOnNode(nodes[i] as HTMLElement);

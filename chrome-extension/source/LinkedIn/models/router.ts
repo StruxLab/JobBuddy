@@ -44,7 +44,7 @@ const router: Router = ({ pathname, search }, mutationList, locationChanged) => 
     const mutationNode = (mutation.target as HTMLElement);
     if (!(['UL', 'DIV'].indexOf(mutationNode.nodeName) > -1)
       || mutationNode.dataset.jobbuddyAttached) return;
-    // hookOnNode(mutationNode);
+    hookOnNode(mutationNode);
   });
 }
 
