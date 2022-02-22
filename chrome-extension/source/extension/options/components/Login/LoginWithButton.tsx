@@ -14,17 +14,22 @@ interface ILoginWithButton {
 }
 
 const LoginWithButton: ILoginWithButton = ({ title, bg, color }) => {
+  const buttonClickHandler = () => {
+    const redirectUrl = chrome.identity.getRedirectURL('oauth2');
+    console.log(redirectUrl);
+  }
   return (
     <Flex
       sx={{ userSelect: 'none' }}
       cursor='pointer'
       bg={bg}
       color={color}
-      w='150px'
+      w='175px'
       justify='center'
+      onClick={buttonClickHandler}
     >
-      <Text fontSize='1.25em' as='span' p='3px'>
-        Login with {title}
+      <Text fontWeight='bold' fontSize='1.25em' as='span' p='8px 0'>
+        Sign in with {title}
       </Text>
     </Flex>
   );
