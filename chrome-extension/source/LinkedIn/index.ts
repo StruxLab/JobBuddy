@@ -1,12 +1,9 @@
 
 import router, { hookOnNode } from './models/router';
-import axios from 'axios';
 
 let location: (Location | null) = null;
 
-const callback: MutationCallback = async (
-  mutationList,
-) => {
+const callback: MutationCallback = async (mutationList) => {
   if (location?.href !== window.location.href) {
     if (!location) {
       const nodes = document.getElementsByClassName('job-card-container');
@@ -15,10 +12,8 @@ const callback: MutationCallback = async (
       }
     }
     location = { ...window.location };
-    router(window.location, mutationList, true);
-  } else {
-    router(window.location, mutationList, false);
   }
+  router(window.location, mutationList);
 
 };
 const targetNode = document.getElementsByClassName('application-outlet')[0]
