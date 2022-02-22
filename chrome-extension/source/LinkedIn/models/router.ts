@@ -31,9 +31,9 @@ export const hookOnNode: HookOnNode = (mutationNode) => {
 }
 
 interface Router {
-  (arg0: Location, arg1: MutationRecord[], arg2: boolean): void;
+  (arg0: Location, arg1: MutationRecord[]): void;
 };
-const router: Router = ({ pathname, search }, mutationList, locationChanged) => {
+const router: Router = ({ pathname, search }, mutationList) => {
   const locationPath = pathname.split('/').slice(1, -1);
   if (locationPath[0] !== 'jobs') return;
   const jobsResultList = document.getElementsByClassName('jobs-search-results')[0] as HTMLElement;
