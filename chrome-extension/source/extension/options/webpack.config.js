@@ -17,7 +17,7 @@ module.exports = {
   },
   output: {
     filename: 'options.bundle.js',
-    path: path.resolve(__dirname, '../../../bundle/models'),
+    path: path.resolve(__dirname, '../../../bundle/src'),
   },
   devtool: 'cheap-module-source-map',
 };

@@ -1,6 +1,8 @@
 # Project Specific
 **/contentscripts/*.bundle.js
 **/contentscripts/*.bundle.js.map
+**/src/*.bundle.js
+**/src/*.bundle.js.map
 .DS_Store
 .env.local
 
