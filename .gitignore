@@ -3,6 +3,7 @@
 **/contentscripts/*.bundle.js.map
 **/src/*.bundle.js
 **/src/*.bundle.js.map
+**/prisma/migrations
 .DS_Store
 .env.local
 
