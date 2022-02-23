@@ -1,20 +1,20 @@
-import { signIn, getSession } from 'next-auth/react';
+import { signIn, getSession, useSession } from 'next-auth/react';
 import type { ReactElement } from 'react';
 import type { NextApiRequest, NextApiResponse } from 'next'
 
 interface LoginProps {
-    user?: {
-        name?: string | null;
-        email?: string | null;
-        image?: string | null;
-    };
+  user?: {
+      name?: string | null;
+      email?: string | null;
+      image?: string | null;
+  } | null;
 };
 
-export default function Login({ user }: LoginProps): ReactElement {
+export default function Login(props: LoginProps): ReactElement {
   return (
     <div>
       <div>
-      Logged in as: { user?.name }
+      Logged in as: { props.user?.name }
       </div>
       <button onClick={() => signIn('google')}>
         Sign in with Google
@@ -42,7 +42,7 @@ export async function getServerSideProps(context: Context): Promise<GetServerSid
   const session = await getSession(context);
   return {
     props: {
-      user: session?.user,
+      user: session?.user || null,
     },
   };
 }
