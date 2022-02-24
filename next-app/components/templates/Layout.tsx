@@ -9,11 +9,18 @@ interface ILayout {
 
 const Layout: ILayout = ({ children }) => {
   return (
-    <Flex direction='column' minH='100vh'>
+    <Flex
+      direction='column'
+      minH='100vh'
+      bg='#999393'
+      fontFamily='ntr'
+    >
       <Header />
       <Flex>
         <SideBar />
-        {children}
+        <Flex overflowY='scroll' maxH='calc(100vh - 70px)' w='100%'>
+          {children}
+        </Flex>
       </Flex>
     </Flex>
   );

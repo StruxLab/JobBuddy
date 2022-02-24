@@ -14,9 +14,8 @@ const Login: ILogin = ({ user }) => {
         <>
           <div>
           Logged in as: {user?.name + ' ' + user?.id}
-
           </div>
-          <button onClick={signOut}>Logout</button>
+          <button onClick={() => signOut()}>Logout</button>
         </>
       ) : (
         <>

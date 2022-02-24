@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'NTR';
+  src: url(/assets/fonts/NTR/NTR-Regular.ttf?#iefix);
+  src: url(/assets/fonts/NTR/NTR-Regular.ttf) format('truetype');
+  font-style: normal;
+  font-weight: 400;
+}
+
 html,
 body {
   padding: 0;
