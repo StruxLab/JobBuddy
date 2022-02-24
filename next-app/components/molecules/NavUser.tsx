@@ -3,12 +3,15 @@ import {
   Text,
   Box,
 } from '@chakra-ui/react';
-import { useSession, signOut } from 'next-auth/react';
+import { useSession, signOut, signIn } from 'next-auth/react';
 import NextLink from 'next/link';
-import NextImage from 'next/image'
+import NextImage from 'next/image';
+import { useRouter } from 'next/router';
 
 const NavUser = () => {
   const { data } = useSession();
+  const router = useRouter();
+  console.log(router);
   console.log(data);
   return (
     <Flex>
@@ -19,12 +22,13 @@ const NavUser = () => {
             align='flex-end'
             justify='center'
           >
-            <Text as='span'>{data?.user?.name}</Text>
+            <Text cursor='pointer' as='span'>{data?.user?.name}</Text>
             <Text
               as='a'
               onClick={() => signOut()}
               fontSize='0.8em'
               color='#d3d3d3'
+              cursor='pointer'
             >Log Out</Text>
           </Flex>
           <Flex>
@@ -49,7 +53,10 @@ const NavUser = () => {
         </Flex>
       ) : (
         <NextLink href='/api/auth/signin' passHref>
-          <Text>Sign In</Text>
+          <Text
+            as='a'
+            onClick={() => signIn(undefined, { callbackUrl: router.pathname })}
+          >Sign In</Text>
         </NextLink>
       )}
     </Flex>

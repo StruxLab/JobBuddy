@@ -10,9 +10,10 @@ const Header = () => {
       h='70px'
       align='center'
       justify='space-between'
+      p='0 20px'
     >
       <NextLink href='/' passHref>
-        <Text as='span' fontWeight='600'>JobBuddy</Text>
+        <Text as='a' fontSize='1.3em' fontWeight='600'>JobBuddy</Text>
       </NextLink>
       <NavUser />
     </Flex>
