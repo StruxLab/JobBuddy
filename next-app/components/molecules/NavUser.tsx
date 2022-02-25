@@ -15,21 +15,32 @@ const NavUser = () => {
   return (
     <Flex>
       {data?.user ? (
-        <Flex gap={10} lineHeight={1}>
+        <Flex gap={2} lineHeight={1}>
           <Flex
             direction='column'
             align='flex-end'
             justify='center'
           >
             <NextLink href='/settings' passHref>
-              <Link cursor='pointer'>{data?.user?.name}</Link>
+              <Link
+                display='inline-flex'
+                _hover={{
+                  textDecor: 'none',
+                }}
+                lineHeight={1}
+                zIndex={5}
+              >
+                {data?.user?.name}
+              </Link>
             </NextLink>
             <Text
+              display='inline-flex'
               as='a'
               onClick={() => signOut({ callbackUrl: '/' })}
               fontSize='0.8em'
               color='#d3d3d3'
               cursor='pointer'
+              lineHeight={1}
             >Log Out</Text>
           </Flex>
           <Flex>

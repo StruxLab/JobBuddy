@@ -6,14 +6,14 @@ interface ILogin {
   (): ReactElement,
 };
 
-const Login: ILogin = ({ user }) => {
+const Login: ILogin = () => {
   const { data: session } = useSession();
   return (
     <div>
-      {user ? (
+      {session?.user ? (
         <>
           <div>
-          Logged in as: {user?.name + ' ' + user?.id}
+          Logged in as: {session?.user?.name + ' ' + session?.user?.id}
           </div>
           <button onClick={() => signOut()}>Logout</button>
         </>
@@ -47,11 +47,11 @@ interface GetServerSideProps {
   props: LoginProps;
 };
 
-export async function getServerSideProps(context: Context): Promise<GetServerSideProps> {
-  const data = await getSession(context);
-  return {
-    props: {
-      user: data?.user || null,
-    },
-  };
-}
+// export async function getServerSideProps(context: Context): Promise<GetServerSideProps> {
+//   const data = await getSession(context);
+//   return {
+//     props: {
+//       user: data?.user || null,
+//     },
+//   };
+// }

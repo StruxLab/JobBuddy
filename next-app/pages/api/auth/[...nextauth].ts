@@ -28,6 +28,10 @@ export default NextAuth({
       // Send properties to the client, like an access_token from a provider.
       session.user = user;
       return session;
-    }
+    },
+    async signIn({ user, account, profile }) {
+      // To be added
+      return true;
+    },
   },
 });

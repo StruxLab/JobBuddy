@@ -33,12 +33,12 @@ const SideBarMenuItem = ({ url, linkText }) => {
 
 const SideBarMenu = () => {
   const menuItems = [
-    { url: '/', text: 'Home' },
+    // { url: '/', text: 'Home' },
     { url: '/dashboard', text: 'Dashboard' },
+    { url: '/dashboard/connect', text: 'Chrome Extension' },
     { url: '/login', text: 'Login' },
-    { url: '/dashboard/link', text: 'Chrome Extension' },
-    { url: '/test3', text: 'Job Tracker' },
-    { url: '/test4', text: 'Job Tracker' },
+    { url: '/?', text: 'Job Tracker' },
+    { url: '/?1', text: 'Job Tracker' },
   ];
   return (
     <Flex
