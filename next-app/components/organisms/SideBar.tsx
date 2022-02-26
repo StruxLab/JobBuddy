@@ -14,6 +14,7 @@ const SideBar = () => {
       overflowY='scroll'
       direction='column'
       justify='space-between'
+      sx={{'&::-webkit-scrollbar': { display: 'none' }}}
     >
       <SideBarMenu />
       <SideBarFooter />
