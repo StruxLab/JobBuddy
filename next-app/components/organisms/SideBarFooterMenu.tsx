@@ -25,7 +25,7 @@ interface IFooterMenu {
 };
 const FooterMenu: IFooterMenu = () => {
   const menuItems = [
-    { id: 0, url: '/dashboard', text: 'Terms of Use' },
+    { id: 0, url: '/terms', text: 'Terms of Use' },
     { id: 1, url: '/dashboard/connect', text: 'Privacy Policy' },
     { id: 2, url: '/dashboard/tracker', text: 'Support' },
   ];
