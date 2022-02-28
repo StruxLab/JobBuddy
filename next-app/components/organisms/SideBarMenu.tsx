@@ -4,8 +4,12 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import type { ReactElement } from 'react';
 
-const SideBarMenuItem = ({ url, linkText }) => {
+interface ISideBarMenuItem {
+  (arg0: { url: string, linkText: string }): ReactElement;
+};
+const SideBarMenuItem: ISideBarMenuItem = ({ url, linkText }) => {
   const router = useRouter();
   const isActiveLink = router.route === url;
   return (
@@ -31,14 +35,16 @@ const SideBarMenuItem = ({ url, linkText }) => {
   );
 }
 
-const SideBarMenu = () => {
-  const menuItems = [
-    // { url: '/', text: 'Home' },
-    { url: '/dashboard', text: 'Dashboard' },
-    { url: '/dashboard/connect', text: 'Chrome Extension' },
-    { url: '/login', text: 'Login' },
-    { url: '/?', text: 'Job Tracker' },
-    { url: '/?1', text: 'Job Tracker' },
+interface ISideBarMenu {
+  (): ReactElement;
+}
+const SideBarMenu: ISideBarMenu = () => {
+  const menuItems: { id: number, url: string, text: string }[] = [
+    { id: 0, url: '/dashboard', text: 'Dashboard' },
+    { id: 1, url: '/dashboard/connect', text: 'Chrome Extension' },
+    { id: 2, url: '/dashboard/tracker', text: 'Job Tracker' },
+    { id: 3, url: '/login', text: 'Login' },
+    { id: 4, url: '/?1', text: 'Job Tracker' },
   ];
   return (
     <Flex
@@ -51,7 +57,7 @@ const SideBarMenu = () => {
     >
       {menuItems.map((item) => {
         return <SideBarMenuItem
-          key={item.url}
+          key={item.id}
           url={item.url}
           linkText={item.text}
         />

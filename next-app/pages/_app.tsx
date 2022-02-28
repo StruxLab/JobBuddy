@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { SessionProvider } from 'next-auth/react';
 import Layout from '../components/templates/Layout';
 import { ChakraProvider } from '@chakra-ui/react';
+import Chakra from '../providers/Theme';
 
 function MyApp({
   Component,
@@ -11,7 +12,7 @@ function MyApp({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <ChakraProvider>
+      <Chakra>
         <Head>
           <title>JobBuddy</title>
           <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -19,7 +20,7 @@ function MyApp({
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </ChakraProvider>
+      </Chakra>
     </SessionProvider>
   );
 }

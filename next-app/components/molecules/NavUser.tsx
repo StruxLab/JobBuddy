@@ -23,25 +23,21 @@ const NavUser = () => {
           >
             <NextLink href='/settings' passHref>
               <Link
-                display='inline-flex'
                 _hover={{
                   textDecor: 'none',
                 }}
-                lineHeight={1}
-                zIndex={5}
+                overflow='hidden'
               >
                 {data?.user?.name}
               </Link>
             </NextLink>
-            <Text
-              display='inline-flex'
-              as='a'
+            <Link
               onClick={() => signOut({ callbackUrl: '/' })}
               fontSize='0.8em'
               color='#d3d3d3'
               cursor='pointer'
-              lineHeight={1}
-            >Log Out</Text>
+              overflow='hidden'
+            >Log Out</Link>
           </Flex>
           <Flex>
             {data.user.image ? (

@@ -5,7 +5,7 @@ import {
   Divider,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-// import SideBarFooterMenu from '../SideBarFooterMenu';
+import SideBarFooterMenu from './SideBarFooterMenu';
 
 const SideBarFooter = () => {
   return (
@@ -17,7 +17,8 @@ const SideBarFooter = () => {
       w='100%'
     >
       <Divider borderColor='#BCBCBC' mb={3} w='70%' />
-      <Divider borderColor='#BCBCBC' mb={3} w='70%' />
+      <SideBarFooterMenu />
+      <Divider borderColor='#BCBCBC' mt={2} mb={3} w='70%' />
       <Link
         href='https://www.struxlab.com'
         _hover={{ textDecor: 'none' }}
