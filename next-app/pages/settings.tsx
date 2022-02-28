@@ -19,7 +19,7 @@ const Settings: ISettings = () => {
     >
       <DashboardBox height='100%'>
         <Heading as='h2' size='md' m={0}>
-          Link JobBuddy Account to Chrome Extension
+          Profile Settings
         </Heading>
         <Flex>
           <Button colorScheme='blue' variant='solid'>Hello!</Button>
