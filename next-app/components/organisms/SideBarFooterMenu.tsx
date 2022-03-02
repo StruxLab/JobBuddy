@@ -24,7 +24,7 @@ interface IFooterMenu {
   (): ReactElement;
 };
 const FooterMenu: IFooterMenu = () => {
-  const menuItems = [
+  const menuItems: { id: number, url: string, text: string }[] = [
     { id: 0, url: '/terms', text: 'Terms of Use' },
     { id: 1, url: '/privacy', text: 'Privacy Policy' },
     { id: 2, url: '/contact', text: 'Support' },
