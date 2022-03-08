@@ -11,12 +11,12 @@ interface IDashboard {
 }
 const Dashboard: IDashboard = () => {
   return (
-    <Grid m={3} templateColumns='repeat(2, 1fr)' gap={6} w='100%'>
+    <Grid m={3} templateColumns='repeat(2, 1fr)' gap={2} w='100%'>
       <GridItem w='100%'>
-        <DashboardBox><Flex w='100%'>t</Flex></DashboardBox>
+        <DashboardBox><Flex w='100%'>Something goes here</Flex></DashboardBox>
       </GridItem>
       <GridItem w='100%'>
-        <DashboardBox>Test</DashboardBox>
+        <DashboardBox>And another thing goes here</DashboardBox>
       </GridItem>
     </Grid>
   );

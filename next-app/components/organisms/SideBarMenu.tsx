@@ -44,7 +44,7 @@ const SideBarMenu: ISideBarMenu = () => {
     { id: 1, url: '/dashboard/connect', text: 'Chrome Extension' },
     { id: 2, url: '/dashboard/tracker', text: 'Job Tracker' },
     { id: 3, url: '/login', text: 'Login' },
-    { id: 4, url: '/?1', text: 'Job Tracker' },
+    { id: 4, url: '/terms', text: 'Terms' },
   ];
   return (
     <Flex

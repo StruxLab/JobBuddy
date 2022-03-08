@@ -12,11 +12,7 @@ interface ISettings {
 };
 const Settings: ISettings = () => {
   return (
-    <Flex
-      m={3}
-      w='100%'
-      direction='column'
-    >
+    <Flex m={3} w='100%' direction='column'>
       <DashboardBox height='100%'>
         <Heading as='h2' size='md' m={0}>
           Profile Settings

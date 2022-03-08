@@ -24,10 +24,10 @@ interface IFooterMenu {
   (): ReactElement;
 };
 const FooterMenu: IFooterMenu = () => {
-  const menuItems = [
-    { id: 0, url: '/dashboard', text: 'Terms of Use' },
-    { id: 1, url: '/dashboard/connect', text: 'Privacy Policy' },
-    { id: 2, url: '/dashboard/tracker', text: 'Support' },
+  const menuItems: { id: number, url: string, text: string }[] = [
+    { id: 0, url: '/terms', text: 'Terms of Use' },
+    { id: 1, url: '/privacy', text: 'Privacy Policy' },
+    { id: 2, url: '/contact', text: 'Support' },
   ];
   return (
     <Flex direction='column' align='center'>
