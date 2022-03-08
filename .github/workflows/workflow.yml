@@ -1,0 +1,37 @@
+name: upload-to-codecov
+on: [push, pull_request]
+jobs:
+  push-to-codecov:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@master
+
+    - name: Setup Node.js
+      uses: actions/setup-node@master
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install Dependencies
+      working-directory: ./next-app
+      run: npm install
+
+    - name: Run tests
+      working-directory: ./next-app
+      run: npm run coverage
+      continue-on-error: true
+
+    - name: Push to CodeCov
+      uses: codecov/codecov-action@v2
+      with:
+        # token: ${{ secrets.CODECOV_TOKEN }} # not required for public repos
+        flags: unittests # optional
+        name: codecov-umbrella # optional
+        fail_ci_if_error: false # optional (default = false)
+        verbose: true # optional (default = false)
