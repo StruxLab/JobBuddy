@@ -1,3 +1,5 @@
+ [![codecov](https://codecov.io/gh/StruxLab/JobBuddy/branch/main/graph/badge.svg?token=5LGJFLF91O)](https://codecov.io/gh/StruxLab/JobBuddy)
+
 <div id="top"></div>
 
 <table>
