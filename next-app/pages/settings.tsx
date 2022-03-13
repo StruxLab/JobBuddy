@@ -5,12 +5,9 @@ import {
   Heading,
 } from '@chakra-ui/react';
 import DashboardBox from '../components/atoms/DashboardBox';
-import type { ReactElement } from 'react';
+import { NextPage } from 'next';
 
-interface ISettings {
-  (): ReactElement;
-};
-const Settings: ISettings = () => {
+const Settings: NextPage = () => {
   return (
     <Flex m={3} w='100%' direction='column'>
       <DashboardBox height='100%'>

@@ -4,13 +4,10 @@ import {
   Button,
   Heading,
 } from '@chakra-ui/react';
-import type { ReactElement } from 'react';
+import { NextPage } from 'next';
 import DashboardBox from '../../components/atoms/DashboardBox';
 
-interface IConnectToExtension {
-  (): ReactElement;
-};
-const ConnectToExtension: IConnectToExtension = () => {
+const ConnectToExtension: NextPage = () => {
   return (
     <Flex m={3} w='100%' direction='column'>
       <DashboardBox height='100%'>

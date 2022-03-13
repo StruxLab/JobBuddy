@@ -1,11 +1,8 @@
 import { Flex, Heading, Text } from '@chakra-ui/react';
-import type { ReactElement } from 'react';
+import { NextPage } from 'next';
 import DashboardBox from '../components/atoms/DashboardBox';
 
-interface IContact {
-  (): ReactElement;
-};
-const Contact: IContact = () => {
+const Contact: NextPage = () => {
   return (
     <Flex m={3} direction='column' w='100%'>
       <DashboardBox>
